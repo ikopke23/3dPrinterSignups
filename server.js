@@ -22,6 +22,13 @@ app.get('/', function(request, response) {
   response.render("index");
 });
 
+app.get('/guide', function(request, response) {
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("guide")
+});
+
+
 app.get('/play', function(request, response) {
     let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
     response.status(200);
