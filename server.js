@@ -28,6 +28,11 @@ app.get('/guide', function(request, response) {
   response.render("guide")
 });
 
+app.get('/schedule', function(request, response){
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("schedule")
+});
 
 app.get('/play', function(request, response) {
     let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
