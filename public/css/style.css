@@ -30,7 +30,7 @@ nav {
   margin-right: 50px;
   margin-left: 50px;
   background-color: #5880c6;
-  overflow: auto;
+  overflow: visible;
   padding: 10px;
 }
 .fs-1{
@@ -95,6 +95,10 @@ h3 {
   color:#272221
 }
 
+h4 {
+  /* text-align:left-center; */
+  color: #272221;
+}
 .printertable {
   text-align: left;
 }

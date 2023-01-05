@@ -34,11 +34,13 @@ app.get('/schedule', function(request, response){
   response.setHeader('Content-Type', 'text/html')
   response.render("schedule")
 });
+
 app.get('/printcreate', function(request, response){
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
   response.render("printCreate")
 });
+
 app.get('/halloffame', function(request, response){
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
@@ -56,7 +58,7 @@ app.get('/print/:printName', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("printDetails", {
-      print: prints[printname]
+      print: prints[printName]
     });
   } else{
     response.status(404);
