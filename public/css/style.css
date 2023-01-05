@@ -99,6 +99,15 @@ h4 {
   /* text-align:left-center; */
   color: #272221;
 }
+
+label {
+  color:#3716c9;
+}
+
+.linkRule{
+  color:#3716c9;
+}
+
 .printertable {
   text-align: left;
 }
