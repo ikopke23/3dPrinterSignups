@@ -1,3 +1,21 @@
 <%- include('partials/header', {title:"Add Prints"}) -%>
 
+<form action="/printCreate" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="printName" value=""><br>
+    <label for="description">Description:</label>
+    <input type="text" id="desc" name="description" value=""><br>
+    <p>Please make sure to put your 3mf/STL file on Google Drive with PUBLIC access to anyone with the link.</p>
+    <label for="time">Link to file:</label>
+    <input type="text" id="link" name="link" value=""><br>
+    <label for="time">Est. Time in min:</label>
+    <input type="text" id="eta" name="time" value=""><br>
+    <label for="infill">Infill:</label>
+    <input type="text" id="infill" name="infill" value=""><br>
+    <label for="width">Width:</label>
+    <input type="text" id="width" name="width" value=""><br>
+    <br><br>
+    <input type="submit" value="Push your Print!">
+</form>
 
+<%- include('partials/footer') -%>

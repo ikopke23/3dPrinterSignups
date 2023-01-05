@@ -34,13 +34,42 @@ app.get('/schedule', function(request, response){
   response.setHeader('Content-Type', 'text/html')
   response.render("schedule")
 });
-
+app.get('/printcreate', function(request, response){
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("printCreate")
+});
 app.get('/halloffame', function(request, response){
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
   response.render("halloffame")
 });
 
+
+
+app.get('/print/:printName', function(request, response){
+  let prints = JSON.parse(fs.readFileSync("data/prints.JSON"))
+  
+  let printName = request.params.opponentName;
+
+  if(prints[printName]){
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("printDetails", {
+      print: prints[printname]
+    });
+  } else{
+    response.status(404);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("error", {
+      "errorCode":"404"
+    });
+  }
+  
+  response.status(200);
+  
+
+});
 
 //------------------- DEMO CODE BELOW -------------------------------
 
