@@ -2,6 +2,7 @@
 const express = require('express');
 const fs = require('fs');
 const ejs = require('ejs');
+const { application } = require('express');
 
 //..............Create an Express server object..................//
 const app = express();
@@ -33,6 +34,15 @@ app.get('/schedule', function(request, response){
   response.setHeader('Content-Type', 'text/html')
   response.render("schedule")
 });
+
+app.get('/halloffame', function(request, response){
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("halloffame")
+});
+
+
+//------------------- DEMO CODE BELOW -------------------------------
 
 app.get('/play', function(request, response) {
     let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));

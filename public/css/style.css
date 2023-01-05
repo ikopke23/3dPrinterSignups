@@ -1,5 +1,5 @@
 body {
-  background-color: #ffffff;
+  background-color: #aaaaaa;
   font-size: 18px;
   color: #000080;
   font-family: 'Raleway', sans-serif;
@@ -17,7 +17,7 @@ div {
   margin-bottom: 50px;
   margin-right: 50px;
   margin-left: 50px;
-  background-color: #66ffff;
+  background-color: #ff0033;
   overflow: auto;
   padding: 15px;
 }
@@ -72,4 +72,9 @@ img {
 footer {
   font-size: 50%;
   text-align: center;
+}
+
+
+h3 {
+  text-align:center;
 }

@@ -13,11 +13,28 @@
       <li class="nav-item">
         <a class="nav-link" href="/schedule">schedule</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/status">Printer Status</a>
+      <li class="nav-item dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Prints
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="/addPrint">Add Print</a></li>
+          <li><a class="dropdown-item" href="#"></a>something</li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
       </li>
+      <li class="nav-item dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+          Printers
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+          <li><a class="dropdown-item" href="/status">Status</a></li>
+          <li><a class="dropdown-item" href="/">Add Printer</a></li>
+          
+        </ul>
+      </li>      
       <li class="nav-item">
-        <a class="nav-link" href="/addprinters">Hall of Fame</a>
+        <a class="nav-link" href="/halloffame">Hall of Fame</a>
       </li>
     </ul>
   </div>
