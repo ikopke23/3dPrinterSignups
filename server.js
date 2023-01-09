@@ -52,8 +52,9 @@ app.get('/halloffame', function(request, response){
 app.get('/print/:printName', function(request, response){
   let prints = JSON.parse(fs.readFileSync("data/prints.JSON"))
   
-  let printName = request.params.opponentName;
-
+  let printName = request.params.printName;
+  console.log("printName = "+printName)
+  console.log("prints = "+prints[printName]["description"])
   if(prints[printName]){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
@@ -72,6 +73,40 @@ app.get('/print/:printName', function(request, response){
   
 
 });
+
+app.post('/printcreate', function(request, response){
+  let name = request.body.printName;
+  let des = request.body.description;
+  let link = request.body.link;
+  let time = request.body.time;
+  let inf = request.body.infill;
+  let wid = request.body.width;
+  let student = request.body.studentName;
+  if(name && des && link && time && inf && wid){
+    let prints = JSON.parse(fs.readFileSync('data/prints.json'))
+
+    let newPrint = {
+      "name":name,
+      "description":des,
+      "link":link,
+      "time":time,
+      "infil":inf,
+      "width":wid,
+      "studentName":student  
+    }
+    prints[name] = newPrint;
+    fs.writeFileSync('data/prints.JSON', JSON.stringify(prints), 'utf8')
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render('/prints/'+name);
+  }else{
+    response.status(400);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("error", {
+      "errorCode":"400"
+    });
+  }
+})
 
 //------------------- DEMO CODE BELOW -------------------------------
 
@@ -181,6 +216,7 @@ app.get('/opponent/:opponentName', function(request, response) {
 });
 
 app.get('/opponentCreate', function(request, response) {
+
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("opponentCreate");
