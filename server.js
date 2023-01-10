@@ -52,9 +52,13 @@ app.get('/halloffame', function(request, response){
 app.get('/print/:printName', function(request, response){
   let prints = JSON.parse(fs.readFileSync("data/prints.JSON"))
   
-  let printName = request.params.opponentName;
+  let printName = request.params.printName;
 
-  if(prints[printName]){
+  console.log(prints);
+  console.log("printName = "+printName)
+
+  if(prints[printName] != null){
+    console.log(printName+" is a real print")
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("printDetails", {

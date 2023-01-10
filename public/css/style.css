@@ -115,3 +115,7 @@ label {
 .b-example-divider {
   visibility:hidden;
 }
+
+.nav_link {
+  color:#00ff26;
+}
