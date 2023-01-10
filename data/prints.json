@@ -1,1 +1,11 @@
-{"name":"tempTower_IK","description":"An automated temp tower from Prusa itself to test the new filament on the minis","link":"https://www.printables.com/model/20652-temp-tower-pla-petg-absasa-for-prusa-mini-mk3s-and","time":"229","infil":"20","width":"0.3","studentName":"Ian_Kopke"}
+{
+    "tempTower-IK":{
+        "name":"tempTower_mini-IK",
+        "description":"An automated temp tower from Prusa itself to test the new filament on the minis",
+        "link":"https://www.printables.com/model/20652-temp-tower-pla-petg-absasa-for-prusa-mini-mk3s-and",
+        "time":"229",
+        "infill":"20",
+        "width":"0.3",
+        "studentName":"Ian_Kopke"
+    }
+}
