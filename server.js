@@ -51,7 +51,7 @@ app.get('/halloffame', function(request, response){
 
 app.get('/print/:printName', function(request, response){
   let prints = JSON.parse(fs.readFileSync("data/prints.JSON"))
-  
+
   let printName = request.params.printName;
 
   console.log(prints);
@@ -71,11 +71,32 @@ app.get('/print/:printName', function(request, response){
       "errorCode":"404"
     });
   }
-  
+
   response.status(200);
-  
+
 
 });
+
+// /*
+// test Details
+app.get('/printDetails', function(request, response){
+  response.status(200)
+  response.setHeader('Content-Type', 'text/html')
+  response.render("printDetails", {
+    print:  {
+            "name":"tempTower_mini-IK",
+            "description":"An automated temp tower from Prusa itself to test the new filament on the minis",
+            "link":"https://www.printables.com/model/20652-temp-tower-pla-petg-absasa-for-prusa-mini-mk3s-and",
+            "time":"229",
+            "infill":"20",
+            "width":"0.3",
+            "studentName":"Ian_Kopke"
+        }
+  })
+});
+
+// */
+
 
 //------------------- DEMO CODE BELOW -------------------------------
 
