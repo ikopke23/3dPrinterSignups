@@ -1,15 +1,15 @@
 <%- include('partials/header', {title:"Add Prints"}) -%>
 <h2>Create New Print!</h2>
 <p>Please remember the rules for creating a print</p>
-<ol>
-    <o>Slice With Prusa Slicer --- Make Sure you are slicing for the right printer. It should be the third option on the right</o>
-    <o>Save your project (3MF/STL) to Google Drive</o>
-    <o>Reserve the amount of time </o>
-</ol>
+<ul class="list-group">
+    <li class="list-group-item list-group-item-dark">Slice With Prusa Slicer --- Make Sure you are slicing for the right printer. It should be the third option on the right</li>
+    <li class="list-group-item list-group-item-dark">Save your project (3MF/STL) to Google Drive</li>
+    <li class="list-group-item list-group-item-dark" >Reserve the amount of time </li>
+</ul>
 
 <h1 href="/guide">If you don't remember how to slice your file visit the Guide for a refresher!</h1>
 
-<form action="/printCreate" method="POST">
+<form action="/printcreate" method="POST">
     <label for="name">Name:</label>
     <input type="text" id="name" name="printName" value=""><br>
     <label for="description">Description:</label>
@@ -17,14 +17,36 @@
     <p class="linkRule fs-4">Please make sure to put your 3mf/STL file on Google Drive with PUBLIC access to anyone with the link.</p>
     <label for="time">Link to file:</label>
     <input type="text" id="link" name="link" value=""><br>
+    <label for="printer">Which Printer?</label>
+    <select multiple class="form-control" id="printer" name ="printer">
+        <option>MK3S A</option>
+        <option>MK3S B</option>
+        <option>MK3S C</option>
+        <option>MK3 D</option>
+        <option>Mini 1</option>
+        <option>Mini 2</option>
+        <option>Mini 3</option>
+        <option>Mini 4</option>
+
+    </select>
     <label for="time">Est. Time in min:</label>
     <input type="text" id="eta" name="time" value=""><br>
     <label for="infill">Infill:</label>
     <input type="text" id="infill" name="infill" value=""><br>
     <label for="width">Width:</label>
-    <input type="text" id="width" name="width" value=""><br>
+    <select multiple class="form-control" id="width" name ="width">
+        <option>0.05 mm UltraDetail</option>
+        <option>0.07 mm UltraDetail</option>
+        <option>0.10 mm Detail</option>
+        <option>0.15 mm Quality</option>
+        <option>0.15 mm Speed</option>
+        <option>0.20 mm Quality</option>
+        <option>0.20 mm Speed</option>
+        <option>0.25 mm Draft</option>
+    </select>
+
     <br><br>
-    <input type="submit" value="Push your Print!">
+    <input type="submit" value="Save your Print!">
 </form>
 
 <%- include('partials/footer') -%>
