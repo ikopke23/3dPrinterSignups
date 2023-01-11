@@ -47,6 +47,20 @@ app.get('/halloffame', function(request, response){
   response.render("halloffame")
 });
 
+app.post('/printcreate', function(request,response){
+  let prints = JSON.parse(fs.readFileSync("data/prints.json"));
+  let printName = request.body.printName;
+
+  console.log(prints);
+  console.log("PrintName =  "+ printName);
+  if(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer){
+    response.status(200);
+    response.render("printDetails")
+    response.redirect("/printDetails/"+printName, {
+      prints[]
+    })
+  }
+});
 
 
 app.get('/print/:printName', function(request, response){
@@ -61,6 +75,7 @@ app.get('/print/:printName', function(request, response){
     response.render("printDetails", {
       print: prints[printName]
     });
+
   } else{
     response.status(404);
     response.setHeader('Content-Type', 'text/html')
@@ -109,21 +124,21 @@ app.post('/printcreate', function(request, response){
 })
 // /*
 // test Details
-app.get('/printDetails', function(request, response){
-  response.status(200)
-  response.setHeader('Content-Type', 'text/html')
-  response.render("printDetails", {
-    print:  {
-            "name":"tempTower_mini-IK",
-            "description":"An automated temp tower from Prusa itself to test the new filament on the minis",
-            "link":"https://www.printables.com/model/20652-temp-tower-pla-petg-absasa-for-prusa-mini-mk3s-and",
-            "time":"229",
-            "infill":"20",
-            "width":"0.3",
-            "studentName":"Ian_Kopke"
-        }
-  })
-});
+// app.get('/printDetails', function(request, response){
+//   response.status(200)
+//   response.setHeader('Content-Type', 'text/html')
+//   response.render("printDetails", {
+//     print:  {
+//             "name":"tempTower_mini-IK",
+//             "description":"An automated temp tower from Prusa itself to test the new filament on the minis",
+//             "link":"https://www.printables.com/model/20652-temp-tower-pla-petg-absasa-for-prusa-mini-mk3s-and",
+//             "time":"229",
+//             "infill":"20",
+//             "width":"0.3",
+//             "studentName":"Ian_Kopke"
+//         }
+//   })
+// });
 
 // */
 
