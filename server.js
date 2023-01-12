@@ -47,20 +47,6 @@ app.get('/halloffame', function(request, response){
   response.render("halloffame")
 });
 
-app.post('/printcreate', function(request,response){
-  let prints = JSON.parse(fs.readFileSync("data/prints.json"));
-  let printName = request.body.printName;
-
-  console.log(prints);
-  console.log("PrintName =  "+ printName);
-  if(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer){
-    response.status(200);
-    response.render("printDetails")
-    response.redirect("/printDetails/"+printName, {
-      prints[]
-    })
-  }
-});
 
 
 app.get('/print/:printName', function(request, response){
@@ -88,40 +74,40 @@ app.get('/print/:printName', function(request, response){
 
 
 });
+app.post('/printcreate', function(request,response){
+  let prints = JSON.parse(fs.readFileSync("data/prints.json"));
+  let printName = request.body.printName;
 
-app.post('/printcreate', function(request, response){
-  let name = request.body.printName;
-  let des = request.body.description;
-  let link = request.body.link;
-  let time = request.body.time;
-  let inf = request.body.infill;
-  let wid = request.body.width;
-  let student = request.body.studentName;
-  if(name && des && link && time && inf && wid){
-    let prints = JSON.parse(fs.readFileSync('data/prints.json'))
-
+  console.log(prints);
+  console.log("PrintName =  "+ printName);
+  console.log(request.body.width)
+  if(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer){
     let newPrint = {
-      "name":name,
-      "description":des,
-      "link":link,
-      "time":time,
-      "infil":inf,
-      "width":wid,
-      "studentName":student  
-    }
-    prints[name] = newPrint;
-    fs.writeFileSync('data/prints.JSON', JSON.stringify(prints), 'utf8')
+      "name":printName,
+      "description":request.body.description,
+      "link":request.body.link,
+      "time":request.body.time,
+      "infill":request.body.infill,
+      "width":request.body.width,
+      "studentName":request.body.studentName,
+      "printer":request.body.printer,
+    };
+    console.log("newPrint = ");
+    console.log(newPrint)
+    prints[printName] = newPrint;
+    fs.writeFileSync("data/prints.json", JSON.stringify(prints))
+    console.log(JSON.parse(fs.readFileSync('data/prints.json')))
+    
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render('/prints/'+name);
-  }else{
-    response.status(400);
-    response.setHeader('Content-Type', 'text/html')
-    response.render("error", {
-      "errorCode":"400"
-    });
+    response.redirect("/printDetails/"+printName)
+  } else {
+    alert("Please fill out all information before saving");
   }
-})
+});
+
+
+
 // /*
 // test Details
 // app.get('/printDetails', function(request, response){
