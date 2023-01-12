@@ -51,7 +51,7 @@ app.get('/halloffame', function(request, response){
 
 app.get('/print/:printName', function(request, response){
   let prints = JSON.parse(fs.readFileSync("data/prints.JSON"))
-  
+  console.log("/print/:printName")
   let printName = request.params.printName;
   console.log("printName = "+printName)
   console.log("prints = "+prints[printName]["description"])
@@ -97,9 +97,12 @@ app.post('/printcreate', function(request,response){
     prints[printName] = newPrint;
     fs.writeFileSync("data/prints.json", JSON.stringify(prints))
     console.log(JSON.parse(fs.readFileSync('data/prints.json')))
-    
+
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
+    response.render("printDetails", {
+      print : newPrint
+    })
     response.redirect("/printDetails/"+printName)
   } else {
     alert("Please fill out all information before saving");
