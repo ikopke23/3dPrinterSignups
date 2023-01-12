@@ -108,25 +108,19 @@ app.post('/printcreate', function(request,response){
 
 
 
-// /*
-// test Details
-// app.get('/printDetails', function(request, response){
-//   response.status(200)
-//   response.setHeader('Content-Type', 'text/html')
-//   response.render("printDetails", {
-//     print:  {
-//             "name":"tempTower_mini-IK",
-//             "description":"An automated temp tower from Prusa itself to test the new filament on the minis",
-//             "link":"https://www.printables.com/model/20652-temp-tower-pla-petg-absasa-for-prusa-mini-mk3s-and",
-//             "time":"229",
-//             "infill":"20",
-//             "width":"0.3",
-//             "studentName":"Ian_Kopke"
-//         }
-//   })
-// });
 
-// */
+// // test Details
+app.get('/printDetails', function(request, response){
+  response.status(200)
+  response.setHeader('Content-Type', 'text/html')
+  response.render("printDetails", {
+    print:  {
+      "name":"tempTower_mini-IK","description":"An automated temp tower from Prusa itself to test the new filament on the minis","link":"https://www.printables.com/model/20652-temp-tower-pla-petg-absasa-for-prusa-mini-mk3s-and","time":"229","infill":"20","width":"0.3","studentName":"Ian_Kopke","printer":"MK3Z", "date":"1/13/23/12:05/red"
+        }
+  })
+});
+
+
 
 
 //------------------- DEMO CODE BELOW -------------------------------

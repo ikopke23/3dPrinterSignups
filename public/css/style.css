@@ -116,6 +116,10 @@ label {
   visibility:hidden;
 }
 
-.nav_link {
-  color:#00ff26;
+.headerText {
+  color:#ffffff;
+}
+
+.headerText .hover{
+  color:#ffffff;
 }

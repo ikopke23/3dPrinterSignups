@@ -24,6 +24,16 @@
       <td><%=print["printer"]%></td>
     </tr>
     <tr>
+      <td>Start Time</td>
+      <script>
+        let data = print["date"];
+        let dataA = data.split("/")
+        let st = dataA[3];
+        console.log("st = "+ st);
+      </script> 
+      <td>st</td>
+    </tr>
+    <tr>
       <td>Estimated time at 100%</td>
       <td><%=Math.floor(print["time"]/60)%> Hours <%=print["time"]%60%> minutes </td>
     </tr>
