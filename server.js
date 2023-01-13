@@ -92,13 +92,13 @@ app.post('/addprinter', function(request, response){
     response.render("/printerDetails", {
       printer:printerName.split('_'),
     })
-    response.redirect("/printerDetails/"+printerName)
+    response.redirect("printerDetails/"+printerName)
   }
 });
 
 app.get('/printer/:printerName', function(request, response){
   let printers = JSON.parse(fs.readFileSync("data/printers.json"))
-  // console.log("/print/:printName")
+  console.log("/print/:printName")
   let printerName = request.params.printName;
   // console.log("printName = "+printName)
   // console.log("prints = "+prints[printName]["description"])
