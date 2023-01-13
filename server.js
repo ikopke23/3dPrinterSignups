@@ -230,7 +230,7 @@ app.post('/printcreate', function(request,response){
     response.render("printDetails", {
       print : newPrint
     })
-    response.redirect("/printDetails/"+printName)
+    response.redirect("/print/"+printName)
   } else {
     alert("Please fill out all information before saving");
   }
