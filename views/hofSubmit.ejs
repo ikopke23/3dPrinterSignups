@@ -1,6 +1,20 @@
 <%- include('partials/header', {title:"Hall of Fame Submission"}) -%>
+<h1 class="fs-1">Submit any print you feel Proud of!</h1>
 
-<form></form>
+<form action="/hofsubmit" method="POST">
+    <label for="name">Print name:</label>
+    <input type="text" name="printName" value=""><br>
+    <label for="description">Description:</label>
+    <input type="text" name="description" value=""><br>
+    <label for="printer">Printer:</label>
+    <input type="text" name="printer" value=""><br>
+    <label for="student">Student name:</label>
+    <input type="text" name="studentName" value=""><br>
+    <label for="photo">Photo:</label>
+    <input type="text" name="photo" value=""><br>
+
+    <input type="submit" value ="Frame your Print!">
+</form>
 
 
 <%- include('partials/footer') -%>

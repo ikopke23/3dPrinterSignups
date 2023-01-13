@@ -21,13 +21,15 @@ app.get('/', function(request, response) {
   let hofPrints = JSON.parse(fs.readFileSync('data/hofprints.json'));
   let keys = Object.keys(hofPrints)
   let randomKey = Math.floor(Math.random()*keys.length);
-  let print = hofPrints[randomKey]
+  let print = hofPrints[keys[randomKey]]
   console.log(print)
   
   response.status(200);
-  response.setHeader('Content-Type', 'text/html')
+  response.setHeader('Content-Type', 'text/html');
   response.render("index", {
-    hofPrint:print
+    hofPrint :print,
+    printers: JSON.parse(fs.readFileSync('data/printers.json'))
+
   })
 });
 
@@ -57,13 +59,39 @@ app.get('/hofsubmit', function(request,response){
   response.render("hofSubmit")
 });
 
+app.post('/hofsubmit', function(request, response){
+  let hofPrints = JSON.parse(fs.readFileSync('data/hofprints.json'));
+  let printName = request.body.printName;
+  let desc = request.body.description;
+  let printer = request.body.printer;
+  let stName = request.body.studentName;
+  let ph = request.body.photo;
+
+  if(ph && stName && desc && printer && printName){
+    newPrint = {
+        "name":printName,
+        "printer":printer,
+        "student":stName,
+        "description":desc,
+        "photo":ph
+    }
+    hofPrints[printName] = newPrint;
+    fs.writeFileSync('data/hofprints.json', JSON.stringify(hofPrints))
+
+    response.status(200);
+    response.setHeader('Content-Type', "text/html");
+    response.render('halloffame')
+    response.redirect('/halloffame')
+  } else {
+    alert("Please fill out every field")
+  }
+})
 
 app.get('/printcreate', function(request, response){
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
   response.render("printCreate")
 });
-
 
 app.get('/print/:printName', function(request, response){
   let prints = JSON.parse(fs.readFileSync("data/prints.JSON"))
