@@ -23,7 +23,7 @@ app.get('/', function(request, response) {
   let randomKey = Math.floor(Math.random()*keys.length);
   let print = hofPrints[keys[randomKey]]
   console.log(print)
-  
+
   response.status(200);
   response.setHeader('Content-Type', 'text/html');
   response.render("index", {
@@ -108,7 +108,6 @@ app.get('/printer/:printerName', function(request, response){
     response.render("printerDetails", {
       printer: printers[printerName]
     });
-
   } else{
     response.status(404);
     response.setHeader('Content-Type', 'text/html')
@@ -116,6 +115,14 @@ app.get('/printer/:printerName', function(request, response){
       "errorCode":"404"
     });
   }
+});
+
+app.get('/allprints', function(request, response){
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("allPrints", {
+    prints : JSON.parse(fs.readFileSync("data/prints.json"))
+  })
 });
 
 app.get('/halloffame', function(request, response){
