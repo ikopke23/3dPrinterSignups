@@ -89,8 +89,32 @@ app.post('/addprinter', function(request, response){
     fs.writeFileSync('data/printers.json', JSON.stringify(printers))
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("status")
-    response.redirect("/printerDetails")
+    response.render("/printerDetails", {
+      printer:printerName.split('_'),
+    })
+    response.redirect("/printerDetails/"+printerName)
+  }
+});
+
+app.get('/printer/:printerName', function(request, response){
+  let printers = JSON.parse(fs.readFileSync("data/printer.JSON"))
+  // console.log("/print/:printName")
+  let printerName = request.params.printName;
+  // console.log("printName = "+printName)
+  // console.log("prints = "+prints[printName]["description"])
+  if(printers[printerName]){
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("printerDetails", {
+      printer: printers[printerName]
+    });
+
+  } else{
+    response.status(404);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("error", {
+      "errorCode":"404"
+    });
   }
 });
 
@@ -144,10 +168,10 @@ app.get('/printcreate', function(request, response){
 
 app.get('/print/:printName', function(request, response){
   let prints = JSON.parse(fs.readFileSync("data/prints.JSON"))
-  console.log("/print/:printName")
+  // console.log("/print/:printName")
   let printName = request.params.printName;
-  console.log("printName = "+printName)
-  console.log("prints = "+prints[printName]["description"])
+  // console.log("printName = "+printName)
+  // console.log("prints = "+prints[printName]["description"])
   if(prints[printName]){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')

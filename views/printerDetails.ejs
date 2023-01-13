@@ -1,0 +1,55 @@
+<%- include('partials/header', {title:"Printer Details"})-%>
+
+<h1 class="fs-1"><%=printer["name"]%></h1>
+<div>
+    <img class="rounded-lg-3" src="images/<%=printer[photo]%>">
+</div>
+<div class="hidden"></div>
+<div>
+    <img class="rounded-lg-3" src="images/<%=printer[location]%>">
+</div>
+<div class="hidden"></div>
+
+<table class="table table-striped table-hover table-primary">
+    <tbody>
+        <tr>
+            <td>Status</td>
+            <td><%=printer["status"]%></td>
+        </tr>
+        <tr>
+            <td>Last Service</td>
+            <td><%=printer["lastService"]%></td>
+        </tr>
+        <tr>
+            <td>Printing Time</td>
+            <td><%=printer["printingTime"]%></td>
+        </tr>
+
+        <!-- <tr>
+            <td></td>
+            <td></td>
+        </tr> -->
+
+    </tbody>
+</table>
+<div class="hidden"></div>
+<table>
+    <thead>
+        <tr>
+            <td> errors</td>
+            <td> Prints</td>
+        </tr>
+    </thead>
+    <tbody>
+        <%for(let i = 0; i < printer[error].length() && i < printer[prints].length; i++){%>
+            <tr>
+                <td> printer[error][i]</td>
+                <td> printer[prints][i]</td>
+            </tr>
+        <%}%>
+    </tbody>
+</table>
+
+
+
+<%- include('partials/footer') -%>
