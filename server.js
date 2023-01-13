@@ -44,7 +44,9 @@ app.get('/printcreate', function(request, response){
 app.get('/halloffame', function(request, response){
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.render("halloffame")
+  response.render("halloffame", {
+    hofPrints : JSON.parse(fs.readFileSync("data/hofprints.json"))
+  })
 });
 
 
