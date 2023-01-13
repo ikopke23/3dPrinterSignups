@@ -31,20 +31,39 @@
 
   <div class="b-example-divider"></div>
 
-  <div class="container my-5">
+
+    <div class="container col-xxl-8 px-4 py-5 hero">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero">
+            <div class="col-10 col-sm-8 col-lg-6 hero">
+              <img src="images/<%=hofPrint['photo']%>.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6 hero">
+              <h1 class="display-5 fw-bold lh-1 mb-3"><%=hofPrint"name"]%></h1>
+              <p class="lead"><%=print["description"]%></p>
+              <p class="lead">Printed on <%=hofPrint["printer"]%> by <%=hofPrint["student"]%></p>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-start hero">   
+                  <a href="/prints" type="button" class="btn btn-secondary btn-lg px-4 me-md-2" >More Info</a>
+              </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+  </div>
+  
+  <!-- <div class="container my-5">
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3  shadow-lg">
       <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
         <h1 class="display-4 fw-bold lh-1">Example Print</h1>
         <p class="lead">The description of randomly chosen print from HoF</p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">More details <!--put in link to that print--></button>
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">More details put in link to that print/button>
         </div>
       </div>
       <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-      <!-- <img src="" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy"> -->
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 
   <div class="b-example-divider"></div>
 

@@ -18,9 +18,17 @@ app.set('view engine', 'ejs'); //specify templating library
 //Express checks routes in the order in which they are defined
 
 app.get('/', function(request, response) {
+  let hofPrints = JSON.parse(fs.readFileSync('data/hofprints.json'));
+  let keys = Object.keys(hofPrints)
+  let randomKey = Math.floor(Math.random()*keys.length);
+  let print = hofPrints[randomKey]
+  console.log(print)
+  
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.render("index");
+  response.render("index", {
+    hofPrint:print
+  })
 });
 
 app.get('/guide', function(request, response) {
@@ -35,12 +43,6 @@ app.get('/schedule', function(request, response){
   response.render("schedule")
 });
 
-app.get('/printcreate', function(request, response){
-  response.status(200);
-  response.setHeader('Content-Type', 'text/html')
-  response.render("printCreate")
-});
-
 app.get('/halloffame', function(request, response){
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
@@ -49,6 +51,18 @@ app.get('/halloffame', function(request, response){
   })
 });
 
+app.get('/hofsubmit', function(request,response){
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("hofSubmit")
+});
+
+
+app.get('/printcreate', function(request, response){
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("printCreate")
+});
 
 
 app.get('/print/:printName', function(request, response){
