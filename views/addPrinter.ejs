@@ -1,0 +1,28 @@
+<%- include('partials/header', {title:"Add Printer!"})-%>
+<h1 class="fs-1">Add Printers!</h1>
+
+<form action="/addprinter" method="POST">
+    <label for="printName">Name:</label>
+    <input type="text" id="name" name="printName" value=""><br>
+    <label for="status">Status:</label>
+    <input type="text" id="desc" name="status" value=""><br>
+    <label for="service">Last Service</label>
+    <input type="text" id="link" name="service" value=""><br>
+    <label for="printTime">Total Print Time</label>
+    <input type="text" id="link" name="printTime" value=""><br>
+    <label for="photo">photo:</label>
+    <input type="text" name="photo" value=""><br>
+    <label for="local">location</label>
+    <input type="text" id="dir" name="local" value=""><br>
+    <label for="err">Errors:</label>
+    <input type="text"  name="err" value=""><br>
+    <label for="prints">Print name:</label>
+    <input type="text" id="pts" name="prints"><br>
+
+
+    <br><br>
+    <input type="submit" value="Save your Printer!">
+</form>
+
+
+<%- include('partials/footer') -%>

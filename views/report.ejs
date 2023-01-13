@@ -1,0 +1,25 @@
+<%- include('partials/header', {title:"Status"})-%>
+
+
+
+    <form action="/report" method="POST">
+        <label for="printer">Which Printer?</label>
+        <select multiple class="form-control" id="printer" name ="printer">
+            <option>MK3S A</option>
+            <option>MK3S B</option>
+            <option>MK3S C</option>
+            <option>MK3 D</option>
+            <option>Mini 1</option>
+            <option>Mini 2</option>
+            <option>Mini 3</option>
+            <option>Mini 4</option>
+    
+        </select>
+        <label for="errormsg">Please describe the error as best you can</label>
+        <input type="text" name="errormsg" value=""><br>
+    
+        <input type="submit" value="Thank you for submitting!">
+    </form>
+
+
+<%- include('partials/footer') -%>

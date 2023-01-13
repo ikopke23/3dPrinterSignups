@@ -45,6 +45,55 @@ app.get('/schedule', function(request, response){
   response.render("schedule")
 });
 
+app.get('/status', function(request, response){
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("status")
+});
+
+app.get('/report', function(request, response){
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("report")
+});
+
+app.get('/addprinter', function(request, response){
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("addPrinter")
+});
+
+app.post('/addprinter', function(request, response){
+  let printers = JSON.parse(fs.readFileSync("data/printers.json"))
+  let printerName = request.body.printName;
+  let stats = request.body.status;
+  let serv = request.body.service;
+  let pho = request.body.photo;
+  let location = request.body.local;
+  let err = request.body.err;
+  let prints = request.body.prints;
+  let printTime = request.body.printTime;
+
+  if(printerName && stats && serv && pho && location && err && prints){
+    let newPrinter = {
+      "name":printerName,
+      "Status":stats,
+      "errors":[err],
+      "prints":[prints],
+      "printingTime":printTime,
+      "lastService":serv,
+      "photo":pho,
+      "location":location
+    }
+    printers[printerName] = newPrinter;
+    fs.writeFileSync('data/printers.json', JSON.stringify(printers))
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("status")
+    response.redirect("/printerDetails")
+  }
+});
+
 app.get('/halloffame', function(request, response){
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
@@ -122,9 +171,9 @@ app.post('/printcreate', function(request,response){
   let prints = JSON.parse(fs.readFileSync("data/prints.json"));
   let printName = request.body.printName;
 
-  console.log(prints);
-  console.log("PrintName =  "+ printName);
-  console.log(request.body.width)
+  // console.log(prints);
+  // console.log("PrintName =  "+ printName);
+  // console.log(request.body.width)
   if(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer){
     let newPrint = {
       "name":printName,

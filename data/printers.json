@@ -1,13 +1,1 @@
-{
-    "MK3S A":{
-        "name":"MK3S A",
-        "Status":"Ready",
-        "errors":["freqeunt bed adhesion errors", "Several globs of death"],
-        "prints":["temptower-ik"],
-        "printingTime":"1000",
-        "lastService":"12/8/22",
-        "photo":"images/mk3sAmap.png",
-        "location":"images/mk3saDir.png"
-        
-    }
-}
+{"MK3S A":{"name":"MK3S A","Status":"Ready","errors":["freqeunt bed adhesion errors","Several globs of death"],"prints":["temptower-ik"],"printingTime":"1000","lastService":"12/8/22","photo":"images/mk3sAmap.png","location":"images/mk3saDir.png"},"MK3S B":{"name":"MK3S B","Status":"Free","errors":["Frequent globs"],"prints":["locustTest"],"printingTime":"2426","lastService":"12/13/22","photo":"huh","location":"mk3sBmap.png"}}
