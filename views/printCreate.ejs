@@ -1,13 +1,13 @@
 <%- include('partials/header', {title:"Add Prints"}) -%>
-<h2>Create New Print!</h2>
-<p>Please remember the rules for creating a print</p>
+<h1 class="fs-1">Create New Print!</h1>
+<p class="fs-2 pPrint">Please remember the rules for creating a print</p>
 <ul class="list-group">
     <li class="list-group-item list-group-item-dark">Slice With Prusa Slicer --- Make Sure you are slicing for the right printer. It should be the third option on the right</li>
     <li class="list-group-item list-group-item-dark">Save your project (3MF/STL) to Google Drive</li>
     <li class="list-group-item list-group-item-dark" >Reserve the amount of time </li>
 </ul>
 
-<h1 href="/guide">If you don't remember how to slice your file visit the Guide for a refresher!</h1>
+<a class="fs-2" href="/guide">If you don't remember how to slice your file visit the Guide for a refresher!</a>
 
 <form action="/printcreate" method="POST">
     <label for="name">Name:</label>
@@ -46,6 +46,8 @@
         <option>0.25 mm Draft</option>
         <option>0.30 mm Draft</option><a>mm Draft</a>
     </select>
+    <label for="photo">Photo:</label>
+    <input type="text" id="stn" name="photo"><br>
     <label for="studentName">Student Name</label>
     <input type="text" id="stn" name="studentName"><br>
 
