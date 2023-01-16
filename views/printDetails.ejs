@@ -4,10 +4,14 @@
 
 <!-- This is where I put all the specifics about each print -->
 <div>
-  <img class="rounded-lg-3" src="images/<%=print["photo"]%>">
+  <% if(print["photo"].length > 20){ %>
+    <img class="rounded-lg-3" src="<%=print["photo"]%>">
+  <%} else{ %>
+    <img class="rounded-lg-3" src="images/<%=print["photo"]%>">
+  <%}%>
 </div>
 
-<div class="hidden">  </div>
+<span  class="hidden">  </span>
 
 <!-- console.log(print) -->
 <table class="table table-striped table-primary table-hover">
@@ -24,14 +28,10 @@
       <td><%=print["printer"]%></td>
     </tr>
     <tr>
-      <td>Start Time</td>
-      <script>
-        let data = print["date"];
-        let dataA = data.split("/")
-        let st = dataA[3];
-        console.log("st = "+ st);
-      </script>
-      <td><%=st%></td>
+      <td>Date</td>
+      <td><%= new Date(print["date"].split("/")[0], print["date"].split("/")[1], print["date"].split("/")[2], print["date"].split("/")[3], print["date"].split("/")[4])%></td>
+      
+
     </tr>
     <tr>
       <td>Estimated time at 100%</td>

@@ -17,6 +17,8 @@ app.set('view engine', 'ejs'); //specify templating library
 //.............Define server routes..............................//
 //Express checks routes in the order in which they are defined
 
+
+
 app.get('/', function(request, response) {
   let hofPrints = JSON.parse(fs.readFileSync('data/hofprints.json'));
   let keys = Object.keys(hofPrints)
@@ -52,6 +54,16 @@ app.get('/status', function(request, response){
   response.setHeader('Content-Type', 'text/html')
   response.render("status")
 });
+
+app.get('/allprinters', function(request, response){
+  let printerList = JSON.parse(fs.readFileSync('data/printers.json'))
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("allPrinters", {
+    printers: printerList
+  })
+});
+
 
 app.get('/report', function(request, response){
   printerList = JSON.parse(fs.readFileSync('data/printers.json'))
@@ -200,7 +212,7 @@ app.get('/printcreate', function(request, response){
 
 app.get('/print/:printName', function(request, response){
   let prints = JSON.parse(fs.readFileSync("data/prints.JSON"))
-  // console.log("/print/:printName")
+  console.log("/print/:printName")
   let printName = request.params.printName;
   // console.log("printName = "+printName)
   // console.log("prints = "+prints[printName]["description"])
