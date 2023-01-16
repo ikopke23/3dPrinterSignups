@@ -43,6 +43,12 @@ app.get('/guide', function(request, response) {
   response.render("guide")
 });
 
+app.get('/advtips', function(request, response){
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("advTips")
+})
+
 app.get('/schedule', function(request, response){
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
