@@ -23,6 +23,8 @@ app.get('/', function(request, response) {
   let randomKey = Math.floor(Math.random()*keys.length);
   let print = hofPrints[keys[randomKey]]
   console.log(print)
+  const date = new Date();
+  console.log(date)
 
   response.status(200);
   response.setHeader('Content-Type', 'text/html');
@@ -52,9 +54,31 @@ app.get('/status', function(request, response){
 });
 
 app.get('/report', function(request, response){
+  printerList = JSON.parse(fs.readFileSync('data/printers.json'))
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.render("report")
+  response.render("report", {
+    printers:printerList
+  })
+});
+
+app.post('/report', function(request, response){
+  printerList = JSON.parse(fs.readFileSync('data/printers.json'))
+  let name = request.body.printer;
+  console.log("name = " + name);
+  console.log(printerList[name])
+
+  printerList[name]["errors"].push(request.body.errormsg)
+  fs.writeFileSync('data/printers.json', JSON.stringify(printerList))
+  
+  let noSpaceName = name.split(' ').join('')
+  
+  response.status(200)
+  response.setHeader('Content-Type', "text/html");
+  response.render("printerDetails", {
+    printer : printerList[name]
+  })
+  response.redirect("/printer/"+noSpaceName)
 });
 
 app.get('/addprinter', function(request, response){
@@ -90,7 +114,7 @@ app.post('/addprinter', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("/printerDetails", {
-      printer:printerName.split('_'),
+      printer:printerName.split(''),
     })
     response.redirect("printerDetails/"+printerName)
   }
@@ -216,6 +240,7 @@ app.post('/printcreate', function(request,response){
       "infill":request.body.infill,
       "width":request.body.width,
       "studentName":request.body.studentName,
+      "date":request.body.date,
       "printer":request.body.printer,
       "photo":request.body.photo,
     };
