@@ -114,7 +114,7 @@ app.post('/addprinter', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("/printerDetails", {
-      printer:printerName.split(''),
+      printer:printerName.split(' ').join(''),
     })
     response.redirect("printerDetails/"+printerName)
   }
@@ -122,10 +122,10 @@ app.post('/addprinter', function(request, response){
 
 app.get('/printer/:printerName', function(request, response){
   let printers = JSON.parse(fs.readFileSync("data/printers.json"))
-  console.log("/print/:printName")
-  let printerName = request.params.printName;
-  // console.log("printName = "+printName)
-  // console.log("prints = "+prints[printName]["description"])
+  console.log("/printer/:printerName")
+  let printerName = request.params.printerName;
+  console.log("printerName = "+printerName)
+  console.log("printer = "+printers[printerName])
   if(printers[printerName]){
     console.log("This is a real print")
     response.status(200);
