@@ -88,6 +88,11 @@ a:hover {
   color: #00ccb1;
 }
 
+.allprints{
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
 img {
   display: block;
   margin-left: auto;
@@ -150,3 +155,4 @@ label {
 .footer{
   color:#000080
 }
+
