@@ -77,10 +77,10 @@ app.post('/printer', function(request, response){
       response.redirect("printerDetails/"+printerName)
     }
   });
-
+//used to be printer/printerName
 app.get('/printer/:id', function(request, response){
     let printers = JSON.parse(fs.readFileSync("data/printers.json"))
-    console.log("/printer/:printerName")
+    console.log("/printer/:id")
     let printerName = request.params.id;
     console.log("printerName = "+printerName)
     console.log("printer = "+printers[printerName])
@@ -88,7 +88,7 @@ app.get('/printer/:id', function(request, response){
       console.log("This is a real print")
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
-      response.render("printerDetails", {
+      response.render("printers/printerDetails", {
         printer: printers[printerName]
       });
     } else{
