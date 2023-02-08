@@ -293,11 +293,6 @@ app.get('/printDetails', function(request, response){
   })
 });
 
-
-//------------------- DEMO CODE BELOW ------------------------------
-// Because routes/middleware are applied in order,
-// this will act as a default error route in case of
-// a request fot an invalid route
 app.use("", function(request, response){
   response.status(404);
   response.setHeader('Content-Type', 'text/html')

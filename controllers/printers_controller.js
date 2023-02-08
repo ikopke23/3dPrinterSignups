@@ -8,7 +8,7 @@ app.get('/printer/allprinters', function(request, response){
 });
 
 //Used to be /report
-app.get('/printer/report', function(request, response){ 
+app.get('/printer/allprint/report', function(request, response){ 
     printerList = JSON.parse(fs.readFileSync('data/printers.json'))
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
