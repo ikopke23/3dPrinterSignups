@@ -1,8 +1,8 @@
-<%- include('partials/header', {title:"Hall of Fame"}) -%>
+<%- include('../partials/header', {title:"Hall of Fame"}) -%>
 
 <h1 class="fs-1">Hall of Fame!!!</h1>
 
-<h2 class="fs-2 hof">Want to submit to the Hall of Fame?</h2> <a class="fs-2 hof" href="/hofsubmit">You can do so here!</a>
+<h2 class="fs-2 hof">Want to submit to the Hall of Fame?</h2> <a class="fs-2 hof" href="/hofprints/hofsubmit">You can do so here!</a>
 
 <%for(print in hofPrints){%>
     <div class="hero hero-background">
@@ -27,4 +27,4 @@
 
 <%}%>
 
-<%- include('partials/footer') -%>
+<%- include('../partials/footer') -%>

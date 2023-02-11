@@ -1,18 +1,23 @@
-app.get('/hofprints', function(request, response){
+const express = require('express'),
+  router = express.Router();
+const fs = require('fs');
+
+
+router.get('/hofprints', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("halloffame", {
+    response.render("hofprints/halloffame", {
       hofPrints : JSON.parse(fs.readFileSync("data/hofprints.json"))
     })
   });
   
-  app.get('/hofprints/hofsubmit', function(request,response){
+  router.get('/hofprints/hofsubmit', function(request,response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("hofSubmit")
+    response.render("hofprints/hofSubmit")
   });
   
-  app.post('/hofprints', function(request, response){
+  router.post('/hofprints', function(request, response){
     let hofPrints = JSON.parse(fs.readFileSync('data/hofprints.json'));
     let printName = request.body.printName;
     let desc = request.body.description;
@@ -33,9 +38,11 @@ app.get('/hofprints', function(request, response){
   
       response.status(200);
       response.setHeader('Content-Type', "text/html");
-      response.render('halloffame')
+      response.render('hofprints/halloffame')
       response.redirect('/halloffame')
     } else {
       alert("Please fill out every field")
     }
   })
+
+  module.exports = router;

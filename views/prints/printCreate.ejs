@@ -1,4 +1,4 @@
-<%- include('partials/header', {title:"Add Prints"}) -%>
+<%- include('../partials/header', {title:"Add Prints"}) -%>
 <h1 class="fs-1">Create New Print!</h1>
 <p class="fs-2 pPrint text-justify text-center">Please remember the rules for creating a print</p>
 <ul class="list-group list-group-flush">
@@ -10,7 +10,7 @@
 
 <a class="fs-2 text-justify text-center" href="/guide">If you don't remember how to slice your file visit the Guide for a refresher!</a>
 
-<form action="/printcreate" method="POST">
+<form action="/print" method="POST">
     <label for="name">Name:</label>
     <input type="text" id="name" name="printName" value=""><br>
     <label for="description">Description:</label>
@@ -60,4 +60,4 @@
     <input type="submit" value="Save your Print!">
 </form>
 
-<%- include('partials/footer') -%>
+<%- include('../partials/footer') -%>

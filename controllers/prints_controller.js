@@ -1,21 +1,27 @@
-app.get('/print/allprints', function(request, response){
+const express = require('express'),
+  router = express.Router();
+  const fs = require('fs');
+
+//used to be prints/allprints
+router.get('/prints', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("allPrints", {
+    response.render("prints/allPrints", {
       prints : JSON.parse(fs.readFileSync("data/prints.json"))
     })
   });
   
-  
-  app.get('/printcreate', function(request, response){
+//used to be prints/printcreate
+  router.get('/print/new', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("printCreate")
+    response.render("prints/printCreate")
   });
   
-  app.get('/print/:printName', function(request, response){
+  //used to be prints/:printname
+  router.get('/prints/:id', function(request, response){
     let prints = JSON.parse(fs.readFileSync("data/prints.JSON"))
-    console.log("/print/:printName")
+    console.log("/prints/:printName")
     let printName = request.params.printName;
     // console.log("printName = "+printName)
     // console.log("prints = "+prints[printName]["description"])
@@ -23,7 +29,7 @@ app.get('/print/allprints', function(request, response){
       console.log("it's the if statement")
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
-      response.render("printDetails", {
+      response.render("prints/printDetails", {
         print: prints[printName]
       });
   
@@ -39,7 +45,8 @@ app.get('/print/allprints', function(request, response){
   
   
   });
-  app.post('/printcreate', function(request,response){
+//used to be prints/printcreate
+  router.post('/print', function(request,response){
     let prints = JSON.parse(fs.readFileSync("data/prints.json"));
     let printName = request.body.printName;
   
@@ -67,7 +74,7 @@ app.get('/print/allprints', function(request, response){
   
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
-      response.render("printDetails", {
+      response.render("prints/printDetails", {
         print : newPrint
       })
       response.redirect("/print/"+printName)
@@ -80,13 +87,15 @@ app.get('/print/allprints', function(request, response){
   
   
   // // test Details
-  app.get('/printDetails', function(request, response){
+  router.get('/printDetails', function(request, response){
     response.status(200)
     response.setHeader('Content-Type', 'text/html')
-    response.render("printDetails", {
+    response.render("prints/printDetails", {
       print:  {
         "name":"tempTower_mini-IK","description":"An automated temp tower from Prusa itself to test the new filament on the minis","link":"https://www.printables.com/model/20652-temp-tower-pla-petg-absasa-for-prusa-mini-mk3s-and","time":"229","infill":"20","width":"0.3","studentName":"Ian_Kopke","printer":"MK3Z", "date":"1/13/23/12:05/red"
           }
     })
   });
   
+
+  module.exports = router;

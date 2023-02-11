@@ -1,6 +1,7 @@
 const express = require('express'),
   router = express.Router();
 
+const fs = require('fs');
 
   router.get('/', function(request, response) {
     let hofPrints = JSON.parse(fs.readFileSync('data/hofprints.json'));

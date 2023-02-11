@@ -1,24 +1,30 @@
-app.get('/printer/allprinters', function(request, response){
+const express = require('express'),
+  router = express.Router();
+ const fs = require('fs');
+
+
+//used to be printers/allPrinters
+router.get('/printer', function(request, response){
     let printerList = JSON.parse(fs.readFileSync('data/printers.json'))
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("allPrinters", {
+    response.render("printers/allPrinters", {
       printers: printerList
     })
 });
 
 //Used to be /report
-app.get('/printer/allprint/report', function(request, response){ 
+router.get('/printer/allprints/report', function(request, response){ 
     printerList = JSON.parse(fs.readFileSync('data/printers.json'))
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("report", {
+    response.render("printers/report", {
       printers:printerList
     })
 });
 
 //used to be /report
-app.post('/printer/allprints', function(request, response){
+router.post('/printer/allprints', function(request, response){
     printerList = JSON.parse(fs.readFileSync('data/printers.json'))
     let name = request.body.printer;
     console.log("name = " + name);
@@ -31,21 +37,21 @@ app.post('/printer/allprints', function(request, response){
     
     response.status(200)
     response.setHeader('Content-Type', "text/html");
-    response.render("printerDetails", {
+    response.render("printers/printerDetails", {
       printer : printerList[name]
     })
     response.redirect("/printer/"+noSpaceName)
 });
-
-app.get('/printer/new', function(request, response){
+//used to be /printer/addPrinter
+router.get('/printer/new', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("addPrinter")
+    response.render("printers/addPrinter")
   });
 
 
 //used to be /printer/addprinter
-app.post('/printer', function(request, response){
+router.post('/printer', function(request, response){
     let printers = JSON.parse(fs.readFileSync("data/printers.json"))
     let printerName = request.body.printName;
     let stats = request.body.status;
@@ -71,14 +77,14 @@ app.post('/printer', function(request, response){
       fs.writeFileSync('data/printers.json', JSON.stringify(printers))
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
-      response.render("/printerDetails", {
+      response.render("printers/printerDetails", {
         printer:printerName.split(' ').join(''),
       })
       response.redirect("printerDetails/"+printerName)
     }
   });
 //used to be printer/printerName
-app.get('/printer/:id', function(request, response){
+router.get('/printer/:id', function(request, response){
     let printers = JSON.parse(fs.readFileSync("data/printers.json"))
     console.log("/printer/:id")
     let printerName = request.params.id;
@@ -100,3 +106,5 @@ app.get('/printer/:id', function(request, response){
     }
   });
 
+
+  module.exports = router;
