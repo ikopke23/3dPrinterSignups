@@ -15,62 +15,85 @@
         crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="/css/style.css">
-        <link href="offcanvas.css" rel="stylesheet">
-        <link rel="stylesheet" href="sidebar.css">
-        <link rel="stylesheet" href="heros.css">
+    <link href="offcanvas.css" rel="stylesheet">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="heroes.css">
+    <link rel="stylesheet" href="sb-admin-2.min.css">
 </head>
+
 <body>
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 260px;">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <svg class="bi me-2" width="40" height="32">
-                <use xlink:href="#bootstrap"></use>
-            </svg>
-            <span class="fs-4">Design Lab</span>
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse"
-                    data-bs-target="#home-collapse" aria-expanded="false">
-                    3d Printing Signups
-                </button>
-                <div class="collapse" id="home-collapse" style="">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-light rounded">Home</a></li>
-                        <li><a href="#" class="link-light rounded">Add Print</a></li>
-                        <li><a href="#" class="link-light rounded">Schedule</a></li>
-                        <li><a href="#" class="link-light rounded">Guide</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse"
-                    data-bs-target="#dashboard-collapse" aria-expanded="false">
-                    Laser Cutting
-                </button>
-                <div class="collapse" id="dashboard-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-light rounded">Home</a></li>
-                        <li><a href="#" class="link-light rounded">Submit SVG</a></li>
-                        <li><a href="#" class="link-light rounded">Schedule</a></li>
-                        <li><a href="#" class="link-light rounded">Guide</a></li>
-                    </ul>
-                </div>
-            </li>
-            <!-- <li>
+    <div id="wrapper">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 260px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+                <span class="fs-4">Design Lab</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-white"
+                        data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                        3d Printing Signups
+                    </button>
+                    <div class="collapse" id="home-collapse" style="">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-light rounded">Home</a></li>
+                            <li><a href="#" class="link-light rounded">Add Print</a></li>
+                            <li><a href="#" class="link-light rounded">Schedule</a></li>
+                            <li><a href="#" class="link-light rounded">Guide</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-white"
+                        data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                        Laser Cutting
+                    </button>
+                    <div class="collapse" id="dashboard-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-light rounded">Home</a></li>
+                            <li><a href="#" class="link-light rounded">Submit SVG</a></li>
+                            <li><a href="#" class="link-light rounded">Schedule</a></li>
+                            <li><a href="#" class="link-light rounded">Guide</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <!-- <li>
             <a href="#" class="nav-link text-white"></a>
           </li> -->
-            <li>
-                <a href="#" class="nav-link text-white"><strong>Hall of Fame</strong></a>
-            </li>
-        </ul>
+                <li>
+                    <a href="#" class="nav-link text-white"><h6>Hall of Fame</h6></a>
+                </li>
+            </ul>
 
-        <hr style="margin-bottom:15px !important;" >
-        <div class="d-flex align-items-center text-white text-decoration-none">
-            <span class="fs-6 d-flex align-items-center text-black text-decoration-none fixed-bottom" style="padding:15px; margin-bottom:15px;" xlink>Administered By General Rose</span>
+            <hr style="margin-bottom:15px !important;" class="mb-auto">
+            <div class="d-flex align-items-center text-white text-decoration-none align-self-mb-end">
+                <span class="fs-6 d-flex align-items-center text-white text-decoration-none"
+                    style="padding:15px; margin-bottom:15px;" xlink>Admined By General Rose</span>
+            </div>
+        </div> <!-- End of Sidebar-->
+
+        <!-- Main content -->
+        <div id="content-wrapper" class="d-flex flex-column justify-content-between">
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Design Lab 2.0!</h1>
+                    </div>
+                    <!-- Main Stuff -->
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
         </div>
-    </div> <!-- End of Sidebar-->  
-    
-<!-- Main content -->
-<!-- I am so confused -->
+    </div>
+    <!-- 
+   /\__/\
+   (=o.o=)
+   |/--\|
+   (")-(")
+ -->
 </body>
