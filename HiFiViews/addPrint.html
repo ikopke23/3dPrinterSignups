@@ -123,12 +123,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputAddress">Description</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="A very basic Test Print that will also go into the dry dock outside the Design Lab">
+                                <input type="text" class="form-control" id="inputAddress"
+                                    placeholder="A very basic Test Print that will also go into the dry dock outside the Design Lab">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="inputCity">Date</label>
-                                    <input type="text" class="form-control" id="inputCity" placeholder="dd/mm/yyyy/hh/mm">
+                                    <input type="text" class="form-control" id="inputCity"
+                                        placeholder="dd/mm/yyyy/hh/mm">
                                 </div>
 
                                 <div class="form-group col-md-2">
@@ -147,47 +149,60 @@
                                         <option value="Mini 2">Mini 2</option>
                                         <option value="Mini 2">Mini 3</option>
                                         <option value="Mini 2">Mini 4</option>
-            
+
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-2">
-                                    <label for="infill">Infill</label>
+                                    <label for="infill">Infill </label>
                                     <input type="text" class="form-control" id="infill" placeholder="20">
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">1</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">2</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
-                                    <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
-                                  </div>
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio1" value="option1">
+                                    <label class="form-check-label" for="inlineRadio1">0.30</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio2" value="option2">
+                                    <label class="form-check-label" for="inlineRadio2">0.25</label>
+                                    <!-- Make sure the right widths are disabled depending upon which printer is selected-->
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio3" value="option3">
+                                    <label class="form-check-label" for="inlineRadio3">0.20</label>
+                                </div>
                             </div>
-                            <div class="form-group">
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <input type="file" class="custom-file-input form-control" id="customFile">
+                                    <label class="custom-file-label" for="customFile">STL/3mf Submit</label>
+                                </div>
+                                <div class="form-group col-md-4" style="margin-left:15!important">
+                                    <input type="file" class="custom-file-input form-control" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Photo of Print</label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        <br>
+
+                        <!-- <div class="form-group">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="gridCheck">
                                     <label class="form-check-label" for="gridCheck">
                                         Check me out
                                     </label>
                                 </div>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
-                            </div>
-    
-
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                        <br>
+                            </div> -->
 
 
+                        <!--
 
 
                         <br><br>
@@ -245,9 +260,9 @@
                         <br><br>
                         <input type="submit" value="Save your Print!">
                     </form>
-                </div>
-            </div><!--end content div-->
-        </div> <!-- end main Content div-->
+                    </div>-->
+                    </div><!--end content div-->
+                </div> <!-- end main Content div-->
 
-    </div><!--End wrapper div-->
+            </div><!--End wrapper div-->
 </body>
