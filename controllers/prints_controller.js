@@ -1,3 +1,5 @@
+import loggedIn from './auth.js'
+
 const express = require('express'),
   router = express.Router();
   const fs = require('fs');
@@ -12,14 +14,14 @@ router.get('/prints', function(request, response){
   });
   
 //used to be prints/printcreate
-  router.get('/print/new', function(request, response){
+  router.get('/print/new', loggedIn, function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("prints/printCreate")
   });
   
   //used to be prints/:printname
-  router.get('/prints/:id', function(request, response){
+  router.get('/prints/:id', loggedIn, function(request, response){
     let prints = JSON.parse(fs.readFileSync("data/prints.JSON"))
     console.log("/prints/:printName")
     let printName = request.params.printName;
