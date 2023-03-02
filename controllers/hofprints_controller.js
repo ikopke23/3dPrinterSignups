@@ -1,6 +1,9 @@
+import loggedIn from './auth.js'
+
 const express = require('express'),
   router = express.Router();
 const fs = require('fs');
+
 
 
 router.get('/hofprints', function(request, response){
@@ -17,7 +20,7 @@ router.get('/hofprints', function(request, response){
     response.render("hofprints/hofSubmit")
   });
   
-  router.post('/hofprints', function(request, response){
+  router.post('/hofprints', loggedIn, function(request, response){
     let hofPrints = JSON.parse(fs.readFileSync('data/hofprints.json'));
     let printName = request.body.printName;
     let desc = request.body.description;

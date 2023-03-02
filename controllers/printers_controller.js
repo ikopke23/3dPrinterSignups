@@ -1,10 +1,12 @@
+import loggedIn from './auth.js'
+
 const express = require('express'),
   router = express.Router();
  const fs = require('fs');
 
 
 //used to be printers/allPrinters
-router.get('/printer', function(request, response){
+router.get('/printer', loggedIn, function(request, response){
     let printerList = JSON.parse(fs.readFileSync('data/printers.json'))
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
@@ -14,7 +16,7 @@ router.get('/printer', function(request, response){
 });
 
 //Used to be /report
-router.get('/printer/allprints/report', function(request, response){ 
+router.get('/printer/allprints/report', loggedIn, function(request, response){ 
     printerList = JSON.parse(fs.readFileSync('data/printers.json'))
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
@@ -43,7 +45,7 @@ router.post('/printer/allprints', function(request, response){
     response.redirect("/printer/"+noSpaceName)
 });
 //used to be /printer/addPrinter
-router.get('/printer/new', function(request, response){
+router.get('/printer/new', loggedIn, function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("printers/addPrinter")
@@ -84,7 +86,7 @@ router.post('/printer', function(request, response){
     }
   });
 //used to be printer/printerName
-router.get('/printer/:id', function(request, response){
+router.get('/printer/:id', loggedIn, function(request, response){
     let printers = JSON.parse(fs.readFileSync("data/printers.json"))
     console.log("/printer/:id")
     let printerName = request.params.id;
