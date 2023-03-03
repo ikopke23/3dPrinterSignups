@@ -69,16 +69,4 @@ router.get("/auth/logout", (request, response) => {
 });
 
 module.exports = router;
-
-
-
-
-
-export function loggedIn(request, response, next) {
-    if (request.user) {
-      next();
-    } else {
-      response.redirect('/login');
-    }
-  }
   

@@ -1,9 +1,15 @@
-import loggedIn from './auth.js'
-
 const express = require('express'),
   router = express.Router();
 
 const fs = require('fs');
+
+function loggedIn(request, response, next) {
+  if (request.user) {
+    next();
+  } else {
+    response.redirect('/login');
+  }
+}
 
   router.get('/', function(request, response) {
     let hofPrints = JSON.parse(fs.readFileSync('data/hofprints.json'));

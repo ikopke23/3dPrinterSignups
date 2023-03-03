@@ -1,10 +1,16 @@
-import loggedIn from './auth.js'
-
 const express = require('express'),
   router = express.Router();
   const fs = require('fs');
 
-//used to be prints/allprints
+function loggedIn(request, response, next) {
+  if (request.user) {
+    next();
+  } else {
+    response.redirect('/login');
+  }
+}
+
+  //used to be prints/allprints
 router.get('/prints', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
