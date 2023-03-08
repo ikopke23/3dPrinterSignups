@@ -9,7 +9,7 @@ const KEYS = require('../config/keys.json');
 console.log(KEYS);
 let userProfile; //only used if you want to see user info beyond username
 
-const Player = require('../models/player_model');
+const User = require('../models/player_model');
 
 router.use(session({
   resave: false,
@@ -46,7 +46,7 @@ passport.deserializeUser(function(obj, cb) {
 */
 router.get('/auth/google',
   passport.authenticate('google', {
-    scope: ['email']
+    scope: ['email', 'profile']
   }));
 
 /*
@@ -63,8 +63,8 @@ router.get('/auth/google/callback',
 
 router.get("/auth/logout", (request, response) => {
   request.logout();
-  let playerID = request.user._json.email;
-  Player.createPlayer(playerID, playerID.split('.')[0]);//only creates if not in players.json
+  let User = request.user._json.email;
+  User.createPlayer(playerID, playerID.split('.')[0]);//only creates if not in players.json
   response.redirect('/');
 });
 
