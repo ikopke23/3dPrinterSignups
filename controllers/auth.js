@@ -9,7 +9,7 @@ const KEYS = require('../config/keys.json');
 console.log(KEYS);
 let userProfile; //only used if you want to see user info beyond username
 
-const User = require('../models/player_model');
+const User = require('../models/user_model');
 
 router.use(session({
   resave: false,
