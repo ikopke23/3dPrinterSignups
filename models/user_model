@@ -1,7 +1,12 @@
 const fs = require('fs');
 
 exports.getUsers = function () {
-    let users = getUsers();
+    let users = JSON.parse(fs.readFileSync(__dirname + '/../data/users.json'));
+    return users;
+}
+
+getlocalUsers = function () {
+    let users = JSON.parse(fs.readFileSync(__dirname + '/../data/users.json'));
     return users;
 }
 
@@ -35,7 +40,9 @@ exports.getUser = function (userID) {
 }
 
 exports.createUser = function (userID, playerDisplayName) {
-    let allUsers = getUsers();
+    let allUsers = getlocalUsers();
+    console.log(getlocalUsers());
+    console.log("createUser function Called");
     if (!allUsers[userID]) {
         let newPlayer = {
             "displayName": playerDisplayName,
@@ -46,7 +53,7 @@ exports.createUser = function (userID, playerDisplayName) {
             "dateJoined": new Date()
         }
         allUsers[userID] = newPlayer;
-        fs.writeFileSync(__dirname + '/../data/players.json', JSON.stringify(allUsers));
+        fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
     }
 }
 
@@ -58,13 +65,13 @@ exports.updateUser = function (playerName, results) {
       else allUsers[playerName]["tie"]++;
     */
 
-    fs.writeFileSync(__dirname + '/../data/players.json', JSON.stringify(allUsers));
+    fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
 }
 
 exports.removeUser = function (userID) {
     let allUsers = getUsers();
     if (allUsers[userID]) delete allUsers[userID];
-    fs.writeFileSync(__dirname + '/../data/players.json', JSON.stringify(allUsers));
+    fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
 }
 
 exports.addPrint = function (userID, printID) {
@@ -73,7 +80,7 @@ exports.addPrint = function (userID, printID) {
         let prints = allUsers[userID].prints;
         prints.push[printID];
     }
-    fs.writeFileSync(__dirname + '/../data/players.json', JSON.stringify(allUsers));
+    fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
 }
 
 exports.addSVG = function (userID, printID) {
@@ -82,5 +89,5 @@ exports.addSVG = function (userID, printID) {
         let prints = allUsers[userID].prints;
         prints.push[printID];
     }
-    fs.writeFileSync(__dirname + '/../data/players.json', JSON.stringify(allUsers));
+    fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
 }

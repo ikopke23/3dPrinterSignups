@@ -23,21 +23,21 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 passport.use(new GoogleStrategy({
-    clientID: KEYS["google-client-id"],
-    clientSecret: KEYS["google-client-secret"],
-    callbackURL: "http://localhost:3000/auth/google/callback"
-    //todo: port==process.env.PORT? :
-  },
-  function(accessToken, refreshToken, profile, done) {
+  clientID: KEYS["google-client-id"],
+  clientSecret: KEYS["google-client-secret"],
+  callbackURL: "http://localhost:3000/auth/google/callback"
+  //todo: port==process.env.PORT? :
+},
+  function (accessToken, refreshToken, profile, done) {
     userProfile = profile; //so we can see & use details form the profile
     return done(null, userProfile);
   }
 ));
 
-passport.serializeUser(function(user, cb) {
+passport.serializeUser(function (user, cb) {
   cb(null, user);
 });
-passport.deserializeUser(function(obj, cb) {
+passport.deserializeUser(function (obj, cb) {
   cb(null, obj);
 });
 
@@ -56,17 +56,16 @@ router.get('/auth/google/callback',
   passport.authenticate('google', {
     failureRedirect: '/error?code=401'
   }),
-  function(request, response) {
+  function (request, response) {
     console.log(userProfile);
+    let user = request.user._json.email;
+    User.createUser(user, user.split('.')[0]);//only creates if not in players.json
     response.redirect('/');
   });
 
 router.get("/auth/logout", (request, response) => {
   request.logout();
-  let User = request.user._json.email;
-  User.createPlayer(playerID, playerID.split('.')[0]);//only creates if not in players.json
   response.redirect('/');
 });
 
 module.exports = router;
-  
