@@ -14,8 +14,9 @@ function loggedIn(request, response, next) {
 router.get('/prints', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
+    console.log(__dirname+"../data/prints.json");
     response.render("prints/allPrints", {
-      prints : JSON.parse(fs.readFileSync("data/prints.json"))
+      prints : JSON.parse(fs.readFileSync("../data/prints.json"))
     })
   });
   
@@ -28,7 +29,7 @@ router.get('/prints', function(request, response){
   
   //used to be prints/:printname
   router.get('/prints/:id', loggedIn, function(request, response){
-    let prints = JSON.parse(fs.readFileSync("data/prints.JSON"))
+    let prints = JSON.parse(fs.readFileSync("/../data/prints.json"))
     console.log("/prints/:printName")
     let printName = request.params.printName;
     // console.log("printName = "+printName)
@@ -55,7 +56,7 @@ router.get('/prints', function(request, response){
   });
 //used to be prints/printcreate
   router.post('/print', function(request,response){
-    let prints = JSON.parse(fs.readFileSync("data/prints.json"));
+    let prints = JSON.parse(fs.readFileSync("../data/prints.json"));
     let printName = request.body.printName;
   
     // console.log(prints);
@@ -77,8 +78,8 @@ router.get('/prints', function(request, response){
       console.log("newPrint = ");
       console.log(newPrint)
       prints[printName] = newPrint;
-      fs.writeFileSync("data/prints.json", JSON.stringify(prints))
-      console.log(JSON.parse(fs.readFileSync('data/prints.json')))
+      fs.writeFileSync("../data/prints.json", JSON.stringify(prints))
+      console.log(JSON.parse(fs.readFileSync('../data/prints.json')))
   
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
