@@ -217,7 +217,7 @@ app.get('/printcreate', function(request, response){
 });
 
 app.get('/print/:printName', function(request, response){
-  let prints = JSON.parse(fs.readFileSync("data/prints.JSON"))
+  let prints = JSON.parse(fs.readFileSync("data/prints.json"))
   console.log("/print/:printName")
   let printName = request.params.printName;
   // console.log("printName = "+printName)
