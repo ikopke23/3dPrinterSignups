@@ -1,0 +1,63 @@
+<%- include('../partials/header', {title:"Add Prints"}) -%>
+<h1 class="fs-1">Create New Print!</h1>
+<p class="fs-2 pPrint text-justify text-center">Please remember the rules for creating a print</p>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item list-group-item-dark text-justify text-center">Slice With Prusa Slicer --- Make Sure you are slicing for the right printer. It should be the third option on the right</li>
+    <li class="list-group-item list-group-item-dark text-justify text-center">Save your project (3MF/STL) to Google Drive</li>
+    <li class="list-group-item list-group-item-dark text-justify text-center" >Reserve the right amount of time </li>
+    <li class="list-group-item list-group-item-dark font-weight-bold text-justify text-center" >You cannot print after school if you are not going to be there -- It is a Fire Hazard and the print will be stopped. </li>
+</ul>
+
+<a class="fs-2 text-justify text-center" href="/guide">If you don't remember how to slice your file visit the Guide for a refresher!</a>
+
+<form action="/print" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="printName" value=""><br>
+    <label for="description">Description:</label>
+    <input type="text" id="desc" name="description" value=""><br>
+    <p class="linkRule fs-4">Please make sure to put your 3mf/STL file on Google Drive with PUBLIC access to anyone with the link.</p>
+    <label for="time">Link to file:</label>
+    <input type="text" id="link" name="link" value=""><br>
+    <label for="printer">Which Printer?</label>
+    <select multiple class="form-control" id="printer" name ="printer">
+        <option>MK3S A</option>
+        <option>MK3S B</option>
+        <option>MKS C</option>
+        <option>MK3S D</option>
+        <option>Mini 1</option>
+        <option>Mini 2</option>
+        <option>Mini 3</option>
+        <option>Mini 4</option>
+
+    </select>
+    <label for="time">Est. Time in min:</label>
+    <input type="text" id="eta" name="time" value=""><br>
+    <label for="date">Date amd Time in (dd/mm/yyyy/hh/mm)</label>
+    <input type="text" id="dateTime" name="date" value=""><br>
+
+    <label for="infill">Infill:</label>
+    <input type="text" id="infill" name="infill" value=""><br>
+    <label for="width">Width:</label>
+
+    <select multiple class="form-control" id="width" name ="width">
+        <option>0.05 mm UltraDetail</option>
+        <option>0.07 mm UltraDetail</option>
+        <option>0.10 mm Detail</option>
+        <option>0.15 mm Quality</option>
+        <option>0.15 mm Speed</option>
+        <option>0.20 mm Quality</option>
+        <option>0.20 mm Speed</option>
+        <option>0.25 mm Draft</option>
+        <option>0.30 mm Draft</option><a>mm Draft</a>
+    </select>
+    <label for="photo">Link to photo:</label>
+    <input type="text" id="stn" name="photo"><br>
+    <label for="studentName">Student Name</label>
+    <input type="text" id="stn" name="studentName"><br>
+
+
+    <br><br>
+    <input type="submit" value="Save your Print!">
+</form>
+
+<%- include('../partials/footer') -%>

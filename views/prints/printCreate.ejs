@@ -1,63 +1,217 @@
-<%- include('../partials/header', {title:"Add Prints"}) -%>
-<h1 class="fs-1">Create New Print!</h1>
-<p class="fs-2 pPrint text-justify text-center">Please remember the rules for creating a print</p>
-<ul class="list-group list-group-flush">
-    <li class="list-group-item list-group-item-dark text-justify text-center">Slice With Prusa Slicer --- Make Sure you are slicing for the right printer. It should be the third option on the right</li>
-    <li class="list-group-item list-group-item-dark text-justify text-center">Save your project (3MF/STL) to Google Drive</li>
-    <li class="list-group-item list-group-item-dark text-justify text-center" >Reserve the right amount of time </li>
-    <li class="list-group-item list-group-item-dark font-weight-bold text-justify text-center" >You cannot print after school if you are not going to be there -- It is a Fire Hazard and the print will be stopped. </li>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
 
-<a class="fs-2 text-justify text-center" href="/guide">If you don't remember how to slice your file visit the Guide for a refresher!</a>
+<head>
+    <title>Add Print</title>
+    <link rel="icon" type="image/jpg" href="images/logo.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
 
-<form action="/print" method="POST">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="printName" value=""><br>
-    <label for="description">Description:</label>
-    <input type="text" id="desc" name="description" value=""><br>
-    <p class="linkRule fs-4">Please make sure to put your 3mf/STL file on Google Drive with PUBLIC access to anyone with the link.</p>
-    <label for="time">Link to file:</label>
-    <input type="text" id="link" name="link" value=""><br>
-    <label for="printer">Which Printer?</label>
-    <select multiple class="form-control" id="printer" name ="printer">
-        <option>MK3S A</option>
-        <option>MK3S B</option>
-        <option>MKS C</option>
-        <option>MK3S D</option>
-        <option>Mini 1</option>
-        <option>Mini 2</option>
-        <option>Mini 3</option>
-        <option>Mini 4</option>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/offcanvas.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/heroes.css">
+    <link rel="stylesheet" href="/css/sb-admin-2.min.css">
+</head>
 
-    </select>
-    <label for="time">Est. Time in min:</label>
-    <input type="text" id="eta" name="time" value=""><br>
-    <label for="date">Date amd Time in (dd/mm/yyyy/hh/mm)</label>
-    <input type="text" id="dateTime" name="date" value=""><br>
+<body>
+    <div id="wrapper">
+            <%-include("../partials/sidebar") %>
+        <!-- Main content -->
+        <div id="content-wrapper" class="d-flex flex-column justify-content-between">
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="p-3 mb-2 bg-gradient-info text-white">
+                        <p class="h3 text-center mb-0 text-gray-830">Print Submission!</p>
+                    </div>
 
-    <label for="infill">Infill:</label>
-    <input type="text" id="infill" name="infill" value=""><br>
-    <label for="width">Width:</label>
-
-    <select multiple class="form-control" id="width" name ="width">
-        <option>0.05 mm UltraDetail</option>
-        <option>0.07 mm UltraDetail</option>
-        <option>0.10 mm Detail</option>
-        <option>0.15 mm Quality</option>
-        <option>0.15 mm Speed</option>
-        <option>0.20 mm Quality</option>
-        <option>0.20 mm Speed</option>
-        <option>0.25 mm Draft</option>
-        <option>0.30 mm Draft</option><a>mm Draft</a>
-    </select>
-    <label for="photo">Link to photo:</label>
-    <input type="text" id="stn" name="photo"><br>
-    <label for="studentName">Student Name</label>
-    <input type="text" id="stn" name="studentName"><br>
+                    <p class="fs-2 pPrint text-justify text-center">Please remember the rules for creating a print
+                    </p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item list-group-item-dark text-justify text-center">Slice With Prusa
+                            Slicer --- Make Sure you are slicing for the right printer. It should be the third
+                            option on the right</li>
+                        <li class="list-group-item list-group-item-dark text-justify text-center">Save your project
+                            (3MF/STL) to Google Drive</li>
+                        <li class="list-group-item list-group-item-dark text-justify text-center">Reserve the right
+                            amount of time </li>
+                        <li class="list-group-item list-group-item-dark font-weight-bold text-justify text-center">
+                            You cannot print after school if you are not going to be there -- It is a Fire Hazard
+                            and the print will be stopped. </li>
+                    </ul>
+                    <div style="text-align:center">
+                        <a class="fs-2 text-justify text-center" href="/guide">If you don't
+                            remember how to slice your
+                            file visit the Guide for a refresher!</a>
+                    </div>
+                    <!-- Main Stuff -->
 
 
-    <br><br>
-    <input type="submit" value="Save your Print!">
-</form>
+                    <div>
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Print Name</label>
+                                    <input class="form-control" id="printName" name="printName"
+                                        placeholder="Benchy-89-IK">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="studentName">Student Name</label>
+                                    <input type="password" class="form-control" id="studentName"
+                                        placeholder="Ian Kopke">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <input type="text" class="form-control" id="description"
+                                    placeholder="A very basic Test Print that will also go into the dry dock outside the Design Lab">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="date">Date</label>
+                                    <input type="text" class="form-control" id="date"
+                                        placeholder="dd/mm/yyyy/hh/mm">
+                                </div>
 
-<%- include('../partials/footer') -%>
+                                <div class="form-group col-md-2">
+                                    <label for="time">Print Time</label>
+                                    <input type="text" class="form-control" id="time" placeholder="89 (in min)">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="printer">Printer</label>
+                                    <select id="printer" name="printer" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option value="MK3SA">MK3S A</option>
+                                        <option value="MK3SB">MK3S B</option>
+                                        <option value="MK3C">MKS C</option>
+                                        <option value="MK3SD">MK3S D</option>
+                                        <option value="Mini1">Mini 1</option>
+                                        <option value="Mini2">Mini 2</option>
+                                        <option value="Mini3">Mini 3</option>
+                                        <option value="Mini4">Mini 4</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="infill">Infill </label>
+                                    <input type="text" class="form-control" id="infill" placeholder="20">
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio1" value="option1">
+                                    <label class="form-check-label" for="inlineRadio1">0.30</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio2" value="option2">
+                                    <label class="form-check-label" for="inlineRadio2">0.25</label>
+                                    <!-- Make sure the right widths are disabled depending upon which printer is selected-->
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio3" value="option3">
+                                    <label class="form-check-label" for="inlineRadio3">0.20</label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <input type="file" class="custom-file-input form-control" id="customFile">
+                                    <label class="custom-file-label" for="customFile">STL/3mf Submit</label>
+                                </div>
+                                <div class="form-group col-md-4" style="margin-left:15!important">
+                                    <input type="file" class="custom-file-input form-control" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Photo of Print</label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        <br>
+
+                        <!-- <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                    <label class="form-check-label" for="gridCheck">
+                                        Check me out
+                                    </label>
+                                </div>
+                            </div> -->
+
+
+                        <!--
+
+
+                        <br><br>
+                    </div>
+                    <form action="/print" method="POST">
+                        <label style="color:black" for="name">Print Name:</label>
+                        <input type="text" id="name" name="printName" value=""><br>
+                        <label style="color:black" for="description">Description:</label>
+                        <input type="text" id="desc" name="description" value=""><br>
+                        <p style="color:black" class="linkRule fs-4">Please make sure to put your 3mf/STL file on
+                            Google Drive with
+                            PUBLIC access to anyone with the link.</p>
+                        <label style="color:black" for="time">Link to file:</label>
+                        <input type="text" id="link" name="link" value=""><br>
+                        <label style="color:black" for="printer">Which Printer?</label>
+                        <select multiple class="custon-select" id="printer" name="printer">
+                            <option style="color:black" value="MK3SA" selected>MK3S A</option>
+                            <option style="color:black" value="MK3SB">MK3S B</option>
+                            <option style="color:black" value="MK3C">MKS C</option>
+                            <option style="color:black" value="MK3SD">MK3S D</option>
+                            <option style="color:black" value="Mini 1">Mini 1</option>
+                            <option style="color:black" value="Mini 2">Mini 2</option>
+                            <option style="color:black" value="Mini 2">Mini 3</option>
+                            <option style="color:black" value="Mini 2">Mini 4</option>
+
+                        </select>
+                        <br>
+
+                        <label style="color:black" for="time">Est. Time in min:</label>
+                        <input type="text" id="eta" name="time" value=""><br>
+                        <label style="color:black" for="date">Date amd Time in (dd/mm/yyyy/hh/mm)</label>
+                        <input type="text" id="dateTime" name="date" value=""><br>
+
+                        <label style="color:black" for="infill">Infill:</label>
+                        <input type="text" id="infill" name="infill" value=""><br>
+                        <label style="color:black" for="width">Width:</label>
+
+                        <select multiple class="form-control" id="width" name="width">
+                            <option style="color:black">0.05 mm UltraDetail</option>
+                            <option style="color:black">0.07 mm UltraDetail</option>
+                            <option style="color:black">0.10 mm Detail</option>
+                            <option style="color:black">0.15 mm Quality</option>
+                            <option style="color:black">0.15 mm Speed</option>
+                            <option style="color:black">0.20 mm Quality</option>
+                            <option style="color:black">0.20 mm Speed</option>
+                            <option style="color:black">0.25 mm Draft</option>
+                            <option style="color:black">0.30 mm Draft</option><a>mm Draft</a>
+                        </select>
+                        <label style="color:black" for="photo">Link to photo:</label>
+                        <input type="text" id="stn" name="photo"><br>
+                        <label style="color:black" for="studentName">Student Name</label>
+                        <input type="text" id="stn" name="studentName"><br>
+
+
+                        <br><br>
+                        <input type="submit" value="Save your Print!">
+                    </form>
+                    </div>-->
+                    </div><!--end content div-->
+                </div> <!-- end main Content div-->
+
+            </div><!--End wrapper div-->
+        </div>
+    </div>
+</body>
