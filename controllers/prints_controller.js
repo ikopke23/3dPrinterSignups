@@ -1,6 +1,7 @@
 const express = require('express'),
   router = express.Router();
   const fs = require('fs');
+  const UUID = require('uuidv4')
 
 function loggedIn(request, response, next) {
   if (request.user) {
@@ -57,14 +58,15 @@ router.get('/prints', function(request, response){
 //used to be prints/printcreate
   router.post('/print', function(request,response){
     let prints = JSON.parse(fs.readFileSync("../data/prints.json"));
-    let printName = request.body.printName;
-  
+    let printName = new UUID()
+    console.log(printName);
+    
     // console.log(prints);
     // console.log("PrintName =  "+ printName);
     // console.log(request.body.width)
     if(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer && request.body.photo){
       let newPrint = {
-        "name":printName,
+        "name":request.body.printName,
         "description":request.body.description,
         "link":request.body.link,
         "time":request.body.time,
