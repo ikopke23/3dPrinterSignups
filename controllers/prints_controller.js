@@ -1,7 +1,7 @@
 const express = require('express'),
   router = express.Router();
   const fs = require('fs');
-  const UUID = require('uuidv4')
+  const UUID = require('uuid')
 
 function loggedIn(request, response, next) {
   if (request.user) {
