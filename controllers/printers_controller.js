@@ -22,7 +22,7 @@ router.get('/printer', loggedIn, function(request, response){
 });
 
 //Used to be /report
-router.get('/printer/allprints/report', loggedIn, function(request, response){ 
+router.get('/printer/report', loggedIn, function(request, response){ 
     printerList = JSON.parse(fs.readFileSync('data/printers.json'))
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
@@ -32,7 +32,7 @@ router.get('/printer/allprints/report', loggedIn, function(request, response){
 });
 
 //used to be /report
-router.post('/printer/allprints', function(request, response){
+router.post('/printer/report', function(request, response){
     printerList = JSON.parse(fs.readFileSync('data/printers.json'))
     let name = request.body.printer;
     console.log("name = " + name);

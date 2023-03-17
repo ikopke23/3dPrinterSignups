@@ -12,7 +12,7 @@ function loggedIn(request, response, next) {
 }
 
   //used to be prints/allprints
-router.get('/prints', function(request, response){
+router.get('/print', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     console.log(__dirname+"../data/prints.json");
