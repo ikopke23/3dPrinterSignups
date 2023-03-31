@@ -16,7 +16,7 @@ function loggedIn(request, response, next) {
     let keys = Object.keys(hofPrints)
     let randomKey = Math.floor(Math.random()*keys.length);
     let print = hofPrints[keys[randomKey]]
-    console.log(print)
+    // console.log(print)
     const date = new Date();
     console.log(date)
   
