@@ -48,3 +48,7 @@ label {
 .footer {
   color: #000080
 }
+
+.hero {
+  border-radius: 2.0rem;
+}

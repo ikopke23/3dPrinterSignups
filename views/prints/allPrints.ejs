@@ -4,15 +4,15 @@
         <div class="b-example-divider"></div>
         <div class="hero hero-background">
             <div class="container col-xxl-8 px-4 py-5 hero">
-                <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero border shadow-lg">
-                    <div class="col-lg-6 hero">
-                        <h1 class="display-5 fw-bold lh-1 mb-3">
+                <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero border shadow-lg rounded hero"   style="background-color: #1d3557;">
+                    <div class="col-lg-6 hero"> 
+                        <h1 class="display-5 fw-bold lh-1 mb-3" style="color:#a8dadc">
                             <%=prints[print]["name"]%>
                         </h1>
-                        <p class="lead fs-4">
+                        <p class="lead fs-4" style="color:#a8dadc">
                             <%=prints[print]["description"]%>
                         </p>
-                        <p class="lead fs-4">Printed on <%=prints[print]["printer"]%> by <%=prints[print]["studentName"]%>
+                        <p class="lead fs-4" style="color:#a8dadc">Printed on <%=prints[print]["printer"]%> by <%=prints[print]["studentName"]%>
                         </p>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-start hero">
                             <a href="/prints/<%=prints[print]["name"]%>" type="button" class="btn btn-dark btn-lg px-4
@@ -22,7 +22,7 @@
                     <div class="col-10 col-sm-8 col-lg-6 hero">
                         <% if(prints[print]["photo"].length> 20){ %>
                             <img src="<%=prints[print]["photo"]%>" class="d-block mx-lg-auto img-fluid" alt="Technical
-                            Difficulties" width="700" height="500" loading="lazy">
+                            Difficulties" width="700" height="500" loading="lazy" style="color:#a8dadc">
                             <%} else{ %>
                                 <img class="d-block mx-lg-auto img-fluid" alt="Technical Difficulties" width="700"
                                     height="500" loading="lazy" src="images/<%=prints[print][" photo"]%>">
