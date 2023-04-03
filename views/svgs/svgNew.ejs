@@ -5,6 +5,48 @@
 <div class="row">
     
 </div>
+<div>
+    <form action="/print" method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">SVG Name</label>
+                <input class="form-control" id="printName" name="printName"
+                    placeholder="roboticsQREtch-IK">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="studentName">Student Name</label>
+                <input type="text" class="form-control" id="studentName"
+                    placeholder="Ian Kopke">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description"
+                placeholder="An attempt at creating a QR code that we could show people at competition to send them to the Robotics Website">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="date">Date cut by</label>
+                <input type="text" class="form-control" id="date"
+                    placeholder="dd/mm/yyyy/hh/mm">
+            </div>
+        
+        </div>
+        <div class="form-row">
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <input type="file" class="custom-file-input form-control" id="customFile">
+                <label class="custom-file-label" for="customFile">SVG Submit</label>
+            </div>
+            <div class="form-group col-md-4" style="margin-left:15!important">
+                <input type="file" class="custom-file-input form-control" id="customFile">
+                <label class="custom-file-label" for="customFile">Photo of Cut</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
 
 <%- include('partials/body')-%>

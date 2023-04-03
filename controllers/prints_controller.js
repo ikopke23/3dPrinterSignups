@@ -16,7 +16,7 @@ router.get('/print', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     console.log(__dirname+"/../data/prints.json");
-    let printsJSON = JSON.parse(fs.readFileSync(__dirname+"/../data/prints.json"))
+    let printsJSON = JSON.parse(fs.readFileSync("data/prints.json"))
     response.render("prints/allPrints", {
       prints : printsJSON
     })
@@ -31,11 +31,11 @@ router.get('/print', function(request, response){
   
   //used to be prints/:printname
   router.get('/prints/:id', loggedIn, function(request, response){
-    let prints = JSON.parse(fs.readFileSync("../data/prints.json"))
+    let prints = JSON.parse(fs.readFileSync("data/prints.json"))
     console.log("/prints/:printName")
     let printName = request.params.printName;
-    // console.log("printName = "+printName)
-    // console.log("prints = "+prints[printName]["description"])
+    console.log("printName = "+printName)
+    console.log("prints = "+prints[printName]["description"])
     if(prints[printName]){
       console.log("it's the if statement")
       response.status(200);
@@ -53,8 +53,7 @@ router.get('/print', function(request, response){
     }
   
     response.status(200);
-  
-  
+
   });
 //used to be prints/printcreate
   router.post('/print', function(request,response){

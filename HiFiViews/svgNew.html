@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        Add a new SVG!
+    </title>
+    <link rel="icon" type="image/jpg" href="images/logo.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/offcanvas.css">
+    <link rel="stylesheet" href="/sidebar.css">
+    <link rel="stylesheet" href="/heroes.css">
+    <link rel="stylesheet" href="/sb-admin-2.min.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 260px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+                <span class="fs-4">Design Lab</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-white fs-5"
+                        data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                        3d Printing Signups
+                    </button>
+                    <div class="collapse" id="home-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="/" class="link-light rounded fs-5">Home</a></li>
+                            <li><a href="/print" class="link-light rounded fs-5">Prints</a></li>
+                            <li><a href="/print/new" class="link-light rounded fs-5">Add Print</a></li>
+                            <li><a href="/schedule" class="link-light rounded fs-5">Schedule</a></li>
+                            <li><a href="/printer" class="link-light rounded fs-5">Printers</a></li>
+                            <li><a href="/status" class="link-light rounded fs-5">Printer Status</a></li>
+                            <li><a href="/guide" class="link-light rounded fs-5">Guide</a></li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-white fs-5"
+                        data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                        Laser Cutting
+                    </button>
+                    <div class="collapse" id="dashboard-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="/" class="link-light rounded fs-5">Home</a></li>
+                            <li><a href="/svg" class="link-light rounded fs-5">All SVGs</a></li>
+                            <li><a href="/svg/new" class="link-light rounded fs-5">Submit SVG</a></li>
+                            <li><a href="/svg/schedule" class="link-light rounded fs-5">Schedule</a></li>
+                            <li><a href="/svg/guide" class="link-light rounded fs-5">Guide</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <!-- <li>
+                        <a href="#" class="nav-link text-white"></a>
+                      </li> -->
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <h6>Hall of Fame</h6>
+                    </a>
+                </li>
+            </ul>
+            <div class="fs-6 d-flex align-itmes-center text-white text-decoration-none">
+                <h4>Email</h4>
+            </div>
+            <hr style="margin-bottom:15px !important;" class="mb-auto">
+            <div class="d-flex align-items-center text-white text-decoration-none align-self-mb-end">
+                <span class="fs-6 d-flex align-items-center text-white text-decoration-none"
+                    style="padding:15px; margin-bottom:15px;" xlink>Admined By General Rose</span>
+            </div>
+        </div> <!-- End of Sidebar-->
+        <!-- Main content -->
+        <div id="content-wrapper" class="d-flex flex-column justify-content-between">
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="p-3 mb-2 bg-gradient-info text-white">
+                        <p class="h3 text-center mb-0 text-gray-830">Add an SVG!</p>
+                    </div>
+
+                    <div class="row">
+                        Welcome home
+                    </div>
+                    <div>
+                        <form action="/print" method="POST">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">SVG Name</label>
+                                    <input class="form-control" id="printName" name="printName"
+                                        placeholder="roboticsQREtch-IK">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="studentName">Student Name</label>
+                                    <input type="text" class="form-control" id="studentName"
+                                        placeholder="Ian Kopke">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <input type="text" class="form-control" id="description"
+                                    placeholder="An attempt at creating a QR code that we could show people at competition to send them to the Robotics Website">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="date">Date cut by</label>
+                                    <input type="text" class="form-control" id="date"
+                                        placeholder="dd/mm/yyyy/hh/mm">
+                                </div>
+                            
+                            </div>
+                            <div class="form-row">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <input type="file" class="custom-file-input form-control" id="customFile">
+                                    <label class="custom-file-label" for="customFile">SVG Submit</label>
+                                </div>
+                                <div class="form-group col-md-4" style="margin-left:15!important">
+                                    <input type="file" class="custom-file-input form-control" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Photo of Cut</label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+
+                </div> <!-- end main Content div-->
+            </div><!--End wrapper div-->
+        </div>
+    </div>
+</body>

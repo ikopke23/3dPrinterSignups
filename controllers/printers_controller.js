@@ -14,12 +14,12 @@ function loggedIn(request, response, next) {
 //used to be printers/allPrinters
 router.get('/printer', loggedIn, function(request, response){
     let printerList = JSON.parse(fs.readFileSync('data/printers.json'))
-    response.status(200);
+    response.status(200)
     response.setHeader('Content-Type', 'text/html')
     response.render("printers/allPrinters", {
       printers: printerList
-    })
-});
+    });
+})
 
 //Used to be /report
 router.get('/printer/report', loggedIn, function(request, response){ 
