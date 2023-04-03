@@ -15,9 +15,10 @@ function loggedIn(request, response, next) {
 router.get('/print', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    console.log(__dirname+"../data/prints.json");
+    console.log(__dirname+"/../data/prints.json");
+    let printsJSON = JSON.parse(fs.readFileSync(__dirname+"/../data/prints.json"))
     response.render("prints/allPrints", {
-      prints : JSON.parse(fs.readFileSync("../data/prints.json"))
+      prints : printsJSON
     })
   });
   
@@ -30,7 +31,7 @@ router.get('/print', function(request, response){
   
   //used to be prints/:printname
   router.get('/prints/:id', loggedIn, function(request, response){
-    let prints = JSON.parse(fs.readFileSync("/../data/prints.json"))
+    let prints = JSON.parse(fs.readFileSync("../data/prints.json"))
     console.log("/prints/:printName")
     let printName = request.params.printName;
     // console.log("printName = "+printName)

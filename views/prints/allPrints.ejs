@@ -1,10 +1,24 @@
-<%- include('../partials/header', {title:"3D Printing Signups!"})-%>
+<%- include('../partials/header', {title:"Prints"})-%>
     <h1 class="fs-1">Every Print is stored Here!</h1>
-
     <%for(print in prints){%>
+        <div class="b-example-divider"></div>
         <div class="hero hero-background">
             <div class="container col-xxl-8 px-4 py-5 hero">
-                <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero">
+                <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero border shadow-lg">
+                    <div class="col-lg-6 hero">
+                        <h1 class="display-5 fw-bold lh-1 mb-3">
+                            <%=prints[print]["name"]%>
+                        </h1>
+                        <p class="lead fs-4">
+                            <%=prints[print]["description"]%>
+                        </p>
+                        <p class="lead fs-4">Printed on <%=prints[print]["printer"]%> by <%=prints[print]["studentName"]%>
+                        </p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start hero">
+                            <a href="/prints/<%=prints[print]["name"]%>" type="button" class="btn btn-dark btn-lg px-4
+                                me-md-2"> More Info</a>
+                        </div>
+                    </div>
                     <div class="col-10 col-sm-8 col-lg-6 hero">
                         <% if(prints[print]["photo"].length> 20){ %>
                             <img src="<%=prints[print]["photo"]%>" class="d-block mx-lg-auto img-fluid" alt="Technical
@@ -15,24 +29,11 @@
                                 <%}%>
                     </div>
                 </div>
-                <div class="col-lg-6 hero">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">
-                        <%=prints[print]["name"]%>
-                    </h1>
-                    <p class="lead">
-                        <%=prints[print]["description"]%>
-                    </p>
-                    <p class="lead">Printed on <%=prints[print]["printer"]%> by <%=prints[print]["student"]%>
-                    </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start hero">
-                        <a href="/prints/<%=prints[print]["name"]%>" type="button" class="btn btn-secondary btn-lg px-4
-                            me-md-2"> More Info</a>
-                    </div>
-                </div>
             </div>
         </div>
+        <hr class="hr divid">
         <div class="b-example-divider"></div>
         <%}%>
-
-
             <%- include('../partials/footer') -%>
+
+        

@@ -6,7 +6,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const KEYS = require('../config/keys.json');
 //keeping our secrets out of our main application is a security best practice
 //we can add /config/keys.json to our .gitignore file so that we keep it local/private
-console.log(KEYS);
+// console.log(KEYS);
 let userProfile; //only used if you want to see user info beyond username
 
 const User = require('../models/user_model');
