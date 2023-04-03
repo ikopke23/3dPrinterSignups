@@ -1,6 +1,8 @@
-<%- include('partials/header', {title:"Design Lab 2.0"})-%>
-
-
+<%if(user == null){%>
+    <%- include('partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+    <%- include('partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
                         <!-- Main Stuff -->
                         <div class="row">
                             <p class="fs-5" style="color:black">
@@ -23,8 +25,8 @@
                     
                         </div><!--end content div-->
                         
-<%- include('partials/body')%>
-<%- include('partials/footer')%>
+<%- include('partials/body')-%>
+<!-- <%- include('partials/footer')-%> -->
 <!-- 
 /\__/\
 (=o.o=)

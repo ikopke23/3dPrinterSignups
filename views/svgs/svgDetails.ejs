@@ -1,0 +1,42 @@
+<%- include('partials/header', {title:"<%=svg[name]%>"})-%>
+
+
+<div class="row">
+    <img class="rounded-lg-3" src="images/<%=svg["photo"]%>">
+</div>
+
+<div class="row">
+    <table class="table table-striped table-primary table-hover">
+        <thead>
+            <td colspan="2"><%=svg["name"]%></td>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Description:</td>
+            <td><%=svg["description"]%></td>
+          </tr>
+          <tr>
+            <td>Material:</td>
+            <td><%=svg["material"]%></td>
+          </tr>
+          <tr>
+            <td>Date</td>
+            <td><%= svg{"date"]%></td>
+          </tr>
+          <tr>
+            <td>Laser width</td>
+            <td><%=svg['width"]%> </td>
+          </tr>
+          <tr>
+            <td colspan="2"><a href="<%=svg["link"]%>" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td colspan="2"><a href="/svg/<%=svg["name"]%>/edit">Edit</a></td>
+          </tr>
+        </tbody>
+      </table>
+      
+</div>
+
+
+<%- include('partials/body')-%>

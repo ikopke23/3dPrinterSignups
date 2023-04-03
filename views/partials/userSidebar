@@ -16,6 +16,7 @@
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li><a href="#" class="link-light rounded fs-5">Home</a></li>
                     <li><a href="/print" class="link-light rounded fs-5">Prints</a></li>
+                    <li><a href="/print/new" class="link-light rounded fs-5">Add Print</a></li>
                     <li><a href="/schedule" class="link-light rounded fs-5">Schedule</a></li>
                     <li><a href="/guide" class="link-light rounded fs-5">Guide</a></li>
 
