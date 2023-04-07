@@ -1,0 +1,81 @@
+<%- include('../partials/header', {title:"All the Svgs are here"})-%>
+    <h1 class="fs-1"></h1>
+    <% let i = 0 %>
+    <%for(svg in svgs){%>
+        <div class="hero hero-background">
+            <div class="container col-xxl-8 px-4 py-5 hero">
+                <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero">
+                    <% if(i % 2 ==0){ %>
+                        <div class="col-lg-6 hero">
+                            <h1 class="display-5 fw-bold lh-1 mb-3" style="color:#1d3557">
+                                <%=svgs[svg]["name"]%>
+                            </h1>
+                            <p class="lead" style="color:#1d3557">
+                                <%=svgs[svg]["status"]%>
+                            </p>
+                            <p class="lead" style="color:#1d3557">Made out of <%=svgs[svg]["material]%></p>
+                            <p class="lead" style="color:#1d3557">Last service was on <%=printers[printer]["lastService"]%>
+                            </p>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-start hero">
+                                <a href="/printer/<%=printers[printer]["name"].split(" ").join("")%>"
+                                    style="color:#1d3557" type="button" class="btn btn-secondary btn-lg px-4 me-md-2"
+                                    id="<%=printers[printer]["name"]%>">More
+                                    Info</a>
+                            </div>
+                        </div>
+                        <div class="col-10 col-sm-8 col-lg-6 hero">
+                            <% if(printers[printer]["photo"].length> 20){ %>
+                                <img src="<%=printers[printer]["photo"]%>" class="d-block mx-lg-auto
+                                img-fluid"
+                                alt="Technical Difficulties" width="700" height="500" loading="lazy">
+                                <%} else{ %>
+                                    <img src="images/<%=printers[printer]["photo"]%>" class="d-block
+                                    mx-lg-auto
+                                    img-fluid" alt="Technical Difficulties" width="700" height="500"
+                                    loading="lazy">
+                                    <%}%>
+                        </div>
+                            
+                <%} else {%>
+                    <div class="col-10 col-sm-8 col-lg-6 hero">
+                        <% if(printers[printer]["photo"].length> 20){ %>
+                            <img src="<%=printers[printer]["photo"]%>" class="d-block mx-lg-auto
+                            img-fluid"
+                            alt="Technical Difficulties" width="700" height="500" loading="lazy">
+                            <%} else{ %>
+                                <img src="images/<%=printers[printer]["photo"]%>" class="d-block
+                                mx-lg-auto
+                                img-fluid" alt="Technical Difficulties" width="700" height="500"
+                                loading="lazy">
+                                <%}%>
+                    </div>
+                    <div class="col-lg-6 hero">
+                        <h1 class="display-5 fw-bold lh-1 mb-3" style="color:#1d3557">
+                            <%=printers[printer]["name"]%>
+                        </h1>
+                        <p class="lead"style="color:#1d3557">
+                            <%=printers[printer]["status"]%>
+                        </p>
+                        <p class="lead"style="color:#1d3557">Total time of <%=printers[printer]["printingTime"]%> hours
+                        </p>
+                        <p class="lead" style="color:#1d3557">Last service was on <%=printers[printer]["lastService"]%>
+                        </p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start hero">
+                            <a href="/printer/<%=printers[printer]["name"].split(" ").join("")%>"
+                                type="button" class="btn btn-secondary btn-lg px-4 me-md-2"
+                                id="<%=printers[printer]["name"]%>" style="color:#1d3557">More
+                                Info</a>
+                        </div>
+                    </div>
+                    <%} %>
+                </div>
+
+            </div>
+        </div>
+        <hr class="hr divid">
+        <div class="b-example-divider"></div>
+        <% i++%>
+        <%}%>
+
+        <%- include('../partials/footer') -%>
+        <%- include('../partials/body') -%>

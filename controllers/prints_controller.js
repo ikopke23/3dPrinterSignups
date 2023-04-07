@@ -18,6 +18,7 @@ router.get('/print', function(request, response){
     console.log(__dirname+"/../data/prints.json");
     let printsJSON = JSON.parse(fs.readFileSync("data/prints.json"))
     response.render("prints/allPrints", {
+      user: request.user,
       prints : printsJSON
     })
   });
@@ -26,7 +27,9 @@ router.get('/print', function(request, response){
   router.get('/print/new', loggedIn, function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("prints/printCreate")
+    response.render("prints/printCreate", {
+      user: request.user
+    })
   });
   
   //used to be prints/:printname
@@ -41,7 +44,8 @@ router.get('/print', function(request, response){
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
       response.render("prints/printDetails", {
-        print: prints[printName]
+        user: request.user,
+        print: prints[printName],
       });
   
     } else{
@@ -86,6 +90,7 @@ router.get('/print', function(request, response){
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
       response.render("prints/printDetails", {
+        user: request.user,
         print : newPrint
       })
       response.redirect("/print/"+printName)

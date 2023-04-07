@@ -17,6 +17,7 @@ router.get('/printer', loggedIn, function(request, response){
     response.status(200)
     response.setHeader('Content-Type', 'text/html')
     response.render("printers/allPrinters", {
+      user: request.user,
       printers: printerList
     });
 })
@@ -27,6 +28,7 @@ router.get('/printer/report', loggedIn, function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("printers/report", {
+      user: request.user,
       printers:printerList
     })
 });
@@ -46,6 +48,7 @@ router.post('/printer/report', function(request, response){
     response.status(200)
     response.setHeader('Content-Type', "text/html");
     response.render("printers/printerDetails", {
+      user: request.user,
       printer : printerList[name]
     })
     response.redirect("/printer/"+noSpaceName)
@@ -54,7 +57,9 @@ router.post('/printer/report', function(request, response){
 router.get('/printer/new', loggedIn, function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("printers/addPrinter")
+    response.render("printers/addPrinter", {
+      user: request.user
+    })
   });
 
 

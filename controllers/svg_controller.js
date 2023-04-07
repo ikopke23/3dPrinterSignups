@@ -15,7 +15,8 @@ router.get('/svg', function(request, response){
     let allsvgs = JSON.parse(fs.readFileSync('data/svgs.json'))
     response.status(200)
     response.setHeader('Content-Type', 'text/html')
-    response.render("/svgs/allsvgs", {
+    response.render("svgs/allSvgs", {
+        user: request.user,
         svgs : allsvgs
     });
 });
@@ -24,7 +25,9 @@ router.get('/svg/new', loggedIn, function (request, response){
     let allsvgs = JSON.parse(fs.readFileSync('data/svgs.json'))
     response.status(200)
     response.setHeader('Content-Type', 'text/html')
-    response.render("/svgs/svgNew")
+    response.render("svgs/svgNew", {
+        user: request.user
+    });
 });
 
 router.get('/svg/:id', function(request, response){
@@ -35,7 +38,8 @@ router.get('/svg/:id', function(request, response){
         response.status(200);
         response.setHeader('Content-Type', 'text/html')
         response.render("svgs/svgDetails", {
-        svg: svgs[svgName]
+            user: request.user,
+            svg: svgs[svgName]
         });
     
     } else{
@@ -56,6 +60,7 @@ router.get('/svg/:id/edit', function(request, response){
         response.status(200);
         response.setHeader('Content-Type', 'text/html')
         response.render("svgs/svgEdit", {
+            user: request.user,            
             svg: svgs[svgName]
         });
     

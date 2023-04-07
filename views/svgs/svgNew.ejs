@@ -1,39 +1,57 @@
-<%- include('partials/userHeader', {title:"<%=svg[name]%>"})-%>
+<%- include('../partials/userHeader', {title:"Create an SVG"})-%>
 
 
 
 <div class="row">
     
 </div>
-<div>
-    <form action="/print" method="POST">
+<div style="background-color:#f1faee;">
+    <form action="/svg" method="POST">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail4">SVG Name</label>
+                <label for="inputEmail4" style="color:#1d3557;">SVG Name</label>
                 <input class="form-control" id="printName" name="printName"
                     placeholder="roboticsQREtch-IK">
             </div>
             <div class="form-group col-md-6">
-                <label for="studentName">Student Name</label>
+                <label for="studentName" style="color:#1d3557;">Student Name</label>
                 <input type="text" class="form-control" id="studentName"
                     placeholder="Ian Kopke">
             </div>
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
+            <label for="description" style="color:#1d3557;">Description</label>
             <input type="text" class="form-control" id="description"
                 placeholder="An attempt at creating a QR code that we could show people at competition to send them to the Robotics Website">
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="date">Date cut by</label>
-                <input type="text" class="form-control" id="date"
+                <label for="date" style="color:#1d3557;">Date cut by</label>
+                <input type="text" class="form-control" id="date" style="color:#1d3557;"
                     placeholder="dd/mm/yyyy/hh/mm">
             </div>
         
+            <div class="form-group col-md-4">
+                <label for="material" style="color:#1d3557;">Material</label>
+                <select id="material" name="printer" class="form-control">
+                    <option selected>Choose...</option>
+                    <option value="acryllic">Acryllic</option>
+                    <option value="wood">Wood</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cutType" style="color:#1d3557;">Type of Cut</label>
+                <select id="cutType" name="printer" class="form-control">
+                    <option selected>Choose...</option>
+                    <option value="etch">etch/engrave</option>
+                    <option value="cut">Cut</option>
+                </select>
+            </div>
         </div>
-        <div class="form-row">
 
+        <div class="form-row">
+            
+        </div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <input type="file" class="custom-file-input form-control" id="customFile">
@@ -49,4 +67,4 @@
     </form>
 
 
-<%- include('partials/body')-%>
+<%- include('../partials/body')-%>

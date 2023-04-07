@@ -19,15 +19,10 @@ function loggedIn(request, response, next) {
     // console.log(print)
     const date = new Date();
     console.log(date)
-    let userTest
-    if (request.user) {
-      let userTest = request.user["displayName"]
-    }
-    console.log("userTest = "+ userTest+ ", request,user = " + request.user);
     response.status(200);
     response.setHeader('Content-Type', 'text/html');
     response.render("index", {
-      user: userTest,
+      user: request.user,
       hofPrint: print,
       printers: JSON.parse(fs.readFileSync('data/printers.json'))
   

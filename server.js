@@ -20,7 +20,7 @@ app.use(require('./controllers/auth'));
 app.use(require('./controllers/index'));
 app.use(require('./controllers/prints_controller'));
 app.use(require('./controllers/printers_controller'));
-// app.use(require('./controllers/svg_controller'));
+app.use(require('./controllers/svg_controller'));
 app.use(require('./controllers/hofprints_controller'));
 
 app.use("", function(request, response) {
