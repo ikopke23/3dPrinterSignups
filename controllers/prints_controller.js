@@ -95,11 +95,11 @@ router.get('/print', function(request, response){
   
   router.get('/prints/:id/edit', loggedIn, function(request, response){
     let prints = Print.getPrints()
-    console.log("/prints/:printName")
+
     let printName = request.params.printName;
-    console.log("printName = "+printName)
-    console.log("prints = "+prints[printName]["description"])
+
     let userEmail = request.user["_json"]["email"];
+
     if(prints[printName] && prints[printName]["user"] == userEmail){
       console.log("it's the if statement")
       response.status(200);

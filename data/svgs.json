@@ -1,1 +1,20 @@
-{}
+{
+    "HacktrinTrophyBases-IK":{
+        "cutname":"HacktrinTrophyBases-IK",
+        "studentName": "IanKopke",
+        "user": "ian.kopke23@trinityschoolnyc.org",
+        "material":"wood",
+        "cutType":"cut",
+        "photo":"circles.jpg",
+        "strokeWidth":"0.0001"
+    },
+    "HacktrinTrophyEngrave-IK":{
+        "cutName":"HacktrinTrophyEngrave-IK",
+        "studentName": "IanKopke",
+        "user": "ian.kopke23@trinityschoolnyc.org",
+        "material":"wood",
+        "cutType":"etch",
+        "photo":"engraved.jpg",
+        "strokeWidth":"0.01"
+    }
+}

@@ -1,7 +1,7 @@
 const express = require('express'),
   router = express.Router();
   const fs = require('fs');
-  const UUID = require('uuid')
+  const SVG = require('../models/svg_model');
 
 function loggedIn(request, response, next) {
   if (request.user) {
@@ -12,7 +12,7 @@ function loggedIn(request, response, next) {
 }
 
 router.get('/svg', function(request, response){
-    let allsvgs = JSON.parse(fs.readFileSync('data/svgs.json'))
+    let allsvgs = SVG.getSvgs()
     response.status(200)
     response.setHeader('Content-Type', 'text/html')
     response.render("svgs/allSvgs", {
@@ -22,7 +22,7 @@ router.get('/svg', function(request, response){
 });
 
 router.get('/svg/new', loggedIn, function (request, response){
-    let allsvgs = JSON.parse(fs.readFileSync('data/svgs.json'))
+    let allsvgs = SVG.getSvgs()
     response.status(200)
     response.setHeader('Content-Type', 'text/html')
     response.render("svgs/svgNew", {
@@ -31,8 +31,9 @@ router.get('/svg/new', loggedIn, function (request, response){
 });
 
 router.get('/svg/:id', function(request, response){
-    let svgs = JSON.parse(fs.readFileSync("../data/svgs.json"))
+    let svgs = SVG.getSvgs()
     let svgName = request.params.printName;
+
     if(svgs[svgName]){
         console.log("it's the if statement")
         response.status(200);
@@ -53,8 +54,9 @@ router.get('/svg/:id', function(request, response){
 })
 
 router.get('/svg/:id/edit', function(request, response){
-    let svgs = JSON.parse(fs.readFileSync("../data/svgs.json"))
+    let svgs = SVG.getSvgs()
     let svgName = request.params.printName;
+    
     if(svgs[svgName]){
         console.log("it's the if statement")
         response.status(200);
