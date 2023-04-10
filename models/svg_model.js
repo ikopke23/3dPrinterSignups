@@ -1,12 +1,12 @@
 const fs = require('fs');
-const User = require('user_controller');
+const User = require('../models/user_model');
 
 
-exports.getPrints = function(){
+exports.getSvgs = function(){
     return JSON.parse(fs.readFileSync("data/svgs.json"));
 }
 
-exports.savePrints = function(prints){
+exports.saveSvgs = function(prints){
     fs.writeFileSync("../data/svg.json", JSON.stringify(prints))
 }
 
@@ -15,8 +15,8 @@ exports.usersSvg = function(userName, cutName){
     return svgs[cutName][user] == userName
 }
 
-exports.printCreate = function(cutName, description, infill, width, time, printer, user){
-    let prints = getPrints();
+exports.svgCreate = function(cutName, description, infill, width, time, printer, user){
+    let svgs = getSvgs();
     if(cutName && description && photo && material && date && user){
         let newPrint = {
             "name":request.body.printName,
@@ -37,8 +37,8 @@ exports.printCreate = function(cutName, description, infill, width, time, printe
     }
 }
 
-exports.deletePrint = function(printName, user){
-    let prints = getPrints();
+exports.deleteSvg = function(printName, user){
+    let prints = getSvgs();
     
     if(usersprint(user, printName)){
         User.removePrint(printName);

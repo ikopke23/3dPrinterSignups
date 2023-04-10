@@ -1,5 +1,5 @@
 const fs = require('fs');
-const User = require('user_model');
+const User = require('../models/user_model');
 
 
 exports.getPrints = function(){

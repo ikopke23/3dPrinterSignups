@@ -39,8 +39,8 @@ router.get('/print', function(request, response){
     let prints = Prints.getPrints()
     console.log("/prints/:printName")
     let printName = request.params.printName;
-    console.log("printName = "+printName)
-    console.log("prints = "+prints[printName]["description"])
+    // console.log("printName = "+printName)
+    // console.log("prints = "+prints[printName]["description"])
     if(prints[printName]){
       console.log("it's the if statement")
       response.status(200);
@@ -71,9 +71,9 @@ router.get('/print', function(request, response){
     // console.log(prints);
     // console.log("PrintName =  "+ printName);
     // console.log(request.body.width)
-    if(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer && request.body.photo && request.body.user["_json"]["email"]){
+    if(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer  && request.body.user["_json"]["email"]){
     
-      let newPrint = Prints.createPrint(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer && request.body.photo && request.body.user["_json"]["email"]);
+      let newPrint = Prints.createPrint(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer  && request.body.user["_json"]["email"]);
       user_model.addPrint(request.body.printName)
 
     
@@ -87,7 +87,6 @@ router.get('/print', function(request, response){
       })
       response.redirect("/print/"+printName)
     } else {
-      alert("Please fill out all information before saving");
     }
   });
   
