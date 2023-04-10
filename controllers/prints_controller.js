@@ -3,6 +3,8 @@ const express = require('express'),
   const fs = require('fs');
   const UUID = require('uuid')
 
+  const Prints = require('../model/prints_model')
+
 function loggedIn(request, response, next) {
   if (request.user) {
     next();
@@ -15,8 +17,8 @@ function loggedIn(request, response, next) {
 router.get('/print', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    console.log(__dirname+"/../data/prints.json");
-    let printsJSON = JSON.parse(fs.readFileSync("data/prints.json"))
+    
+    let printsJSON = Prints.getPrints();
     response.render("prints/allPrints", {
       user: request.user,
       prints : printsJSON
@@ -34,7 +36,7 @@ router.get('/print', function(request, response){
   
   //used to be prints/:printname
   router.get('/prints/:id', loggedIn, function(request, response){
-    let prints = JSON.parse(fs.readFileSync("data/prints.json"))
+    let prints = Prints.getPrints()
     console.log("/prints/:printName")
     let printName = request.params.printName;
     console.log("printName = "+printName)
@@ -62,7 +64,7 @@ router.get('/print', function(request, response){
 
   //used to be prints/printcreate
   router.post('/print', function(request,response){
-    let prints = JSON.parse(fs.readFileSync("../data/prints.json"));
+    let prints = Prints.getPrints();
     let printName = request.printName;
     console.log(printName);
     
@@ -71,13 +73,11 @@ router.get('/print', function(request, response){
     // console.log(request.body.width)
     if(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer && request.body.photo && request.body.user["_json"]["email"]){
     
-      let newPrint = print_model.createPrint(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer && request.body.photo && request.body.user["_json"]["email"]);
+      let newPrint = Prints.createPrint(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer && request.body.photo && request.body.user["_json"]["email"]);
       user_model.addPrint(request.body.printName)
 
     
-      prints[printName] = newPrint;
-      fs.writeFileSync("../data/prints.json", JSON.stringify(prints))
-      console.log(JSON.parse(fs.readFileSync('../data/prints.json')))
+      console.log(Prints.getPrints())
   
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
@@ -94,7 +94,7 @@ router.get('/print', function(request, response){
 
   
   router.get('/prints/:id/edit', loggedIn, function(request, response){
-    let prints = JSON.parse(fs.readFileSync("data/prints.json"))
+    let prints = Print.getPrints()
     console.log("/prints/:printName")
     let printName = request.params.printName;
     console.log("printName = "+printName)

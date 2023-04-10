@@ -1,9 +1,18 @@
 const fs = require('fs');
-
+const User = require('user_controller');
 
 
 exports.getPrints = function(){
     return JSON.parse(fs.readFileSync("data/prints.json"));
+}
+
+exports.savePrints = function(prints){
+    fs.writeFileSync("../data/prints.json", JSON.stringify(prints))
+}
+
+exports.usersPrint = function(userName, printName){
+    prints = getPrints();
+    return prints[printName][user] == userName
 }
 
 exports.printCreate = function(printName, description, infill, width, time, printer, user){
@@ -32,7 +41,12 @@ exports.printCreate = function(printName, description, infill, width, time, prin
 exports.deletePrint = function(printName, user){
     let prints = getPrints();
     
-    if(prints[printName]["user"] == user){
-
+    if(usersprint(user, printName)){
+        User.removePrint(printName);
+        
     }
 }
+
+
+
+

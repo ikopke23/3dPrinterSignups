@@ -102,7 +102,7 @@ exports.addSVG = function (userID, svgID) {
     fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
 }
 
-exports.removePrint = function (userID, svgID) {
+exports.removeSVG = function (userID, svgID) {
     let allUsers = getUsers();
     if (allUsers[userID]) {
         let svgs = allUsers[userID].SVGs;

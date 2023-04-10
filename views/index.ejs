@@ -4,6 +4,7 @@
     <%- include('partials/userHeader', {title:"Design Lab 2.0"})-%>
 <%}%>
                         <!-- Main Stuff -->
+                    <%if(user == undefined){%>
                         <div class="row">
                             <p class="fs-5" style="color:black">
                                 Welcome to the Design Lab Website! <br>
@@ -25,8 +26,96 @@
                     
                         </div><!--end content div-->
                         
-<%- include('partials/body')-%>
-<!-- <%- include('partials/footer')-%> -->
+                        <%} else {%>
+                            <table class="table printertable table-dark  table-striped table-hover">
+                                <thead>
+                                  <tr>
+                                    <td colspan="2">MK3 Family</td>
+                                    <td colspan="2">Minis</td>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>MK3S A</td><!--Make modular based on the MK3 Family  -->
+                                    <td>Free</td>
+                                    <td>Mini 1</td> <!--Make Modular based on the Mini fam-->
+                                    <td>Free</td>
+                                  </tr>
+                                  <tr>
+                                    <td>MK3S B</td>
+                                    <td>Free</td>
+                                    <td>Mini 2</td>
+                                    <td>Free</td>
+                                  </tr>
+                                <tr>
+                                  <td>MK3 C</td><!--Make modular based on the MK3 Family  -->
+                                  <td>Free</td>
+                                  <td>Mini 3</td> <!--Make Modular based on the Mini fam-->
+                                  <td>Free</td>
+                                </tr>
+                                <tr>
+                                  <td>MK3S D</td>
+                                  <td>Free</td>
+                                  <td>Mini 4</td>
+                                  <td>Free</td>
+                                </tr>
+                                </tbody>
+                              </table>
+                              <hr class="divid">
+
+                            <div class="b-example-divider"></div>
+                            <div class="hero hero-background">
+                              <div class="container col-xxl-8 px-4 py-5 hero">
+                                <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero">
+                                  <div class="col-10 col-sm-8 col-lg-6 hero">
+                                    <img src="images/benchy.jpeg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                                  </div>
+                                  <div class="col-lg-6 hero">
+                                    <h1 class="display-5 fw-bold lh-1 mb-3">BENCHY</h1>
+                                    <p class="lead">This is our current collection of Benchies. Benchies are an old Test print that does not actually test that much. However, it has become a meme, so Ian printed a dry dock for them.</p>
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-start hero">
+                                      <a href="https://www.3dbenchy.com" type="button" class="btn btn-secondary btn-lg px-4 me-md-2"  target="_blank">Link to file</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <hr class="divid">
+                                <div class="p-3 mb-2" style="color:#e63946">
+                                <p class="h3 text-center mb-0 " >A Hall of Famer!! </p>
+                            </div>
+                            <div class="hero hero-background">
+                                <div class="container col-xxl-8 px-4 py-5 hero">
+                                    <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero border shadow-lg rounded hero"
+                                        style="background-color: #1d3557;">
+                                        <div class="col-lg-6 hero">
+                                            <h1 class="display-5 fw-bold lh-1 mb-3" style="color:#a8dadc">
+                                                <%=hofPrint["name"]%>
+                                            </h1>
+                                            <p class="lead" style="color:#a8dadc">
+                                                <%=hofPrint["description"]%>
+                                            </p>
+                                            <p class="lead" style="color:#a8dadc">Printed on <%=hofPrint["printer"]%> by <%=hofPrint["student"]%>
+                                            </p>
+                    
+                                        </div>
+                                        <div class="col-10 col-sm-8 col-lg-6 hero">
+                                            <img src="images/<%=hofPrint["photo"]%>" class="d-block mx-lg-auto img-fluid" alt="Technical Difficulties" width="700" height="500" loading="lazy">
+                    
+                                        </div>
+                                    </div>
+                    
+                                </div>
+                            </div>
+                                
+
+                        <%}%>
+                    <hr class="divid">
+                    <%- include('partials/footer')-%>
+
+                    <%- include('partials/body')-%> 
+
 <!-- 
 /\__/\
 (=o.o=)

@@ -1,26 +1,29 @@
 <%- include('../partials/header', {title:"Hall of Fame"}) -%>
 
-    <h1 class="fs-1">Hall of Fame!!!</h1>
 
-    <h2 class="fs-2 hof">Want to submit to the Hall of Fame?</h2> <a class="fs-2 hof" href="/hofprints/hofsubmit">You
-        can do so here!</a>
 
+    <h2 class="fs-2 hof">Want to submit to the Hall of Fame?</h2> 
+    <a class="fs-2 hof" href="/hofprints/hofsubmit">You can do so here!</a>
+        <%let i = 0;%>
     <%for(print in hofPrints){%>
-        <div class="hero hero-background">
-            <div class="container col-xxl-8 px-4 py-5 hero">
-                <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero">
-                    <div class="col-10 col-sm-8 col-lg-6 hero">
-                        <img src="images/<%=hofPrints[print][" photo"]%>" class="d-block mx-lg-auto img-fluid"
+        <%if(i%2 == 0){%>
+            <%console.log("i == "+ i)%>
+            <div class="hero hero-background">
+                <div class="container col-xxl-8 px-4 py-5 hero">
+                    <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero border shadow-lg rounded hero"
+                        style="background-color: #1d3557;">
+                        <div class="col-lg-6 hero">
+                        <img src="images/<%=hofPrints[print]["photo"]%>" class="d-block mx-lg-auto img-fluid"
                         alt="Technical Difficulties" width="700" height="500" loading="lazy">
                     </div>
                     <div class="col-lg-6 hero">
-                        <h1 class="display-5 fw-bold lh-1 mb-3">
+                        <h1 class="display-5 fw-bold lh-1 mb-3" style="color:#a8dadc">
                             <%=hofPrints[print]["name"]%>
                         </h1>
-                        <p class="lead">
+                        <p class="lead" style="color:#a8dadc">
                             <%=hofPrints[print]["description"]%>
                         </p>
-                        <p class="lead">Printed on <%=hofPrints[print]["printer"]%> by <%=hofPrints[print]["student"]%>
+                        <p class="lead" style="color:#a8dadc">Printed on <%=hofPrints[print]["printer"]%> by <%=hofPrints[print]["student"]%>
                         </p>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-start hero">
 
@@ -30,37 +33,36 @@
                 </div>
             </div>
         </div>
-        <div class="b-example-divider"></div>
+        <%} else { %>
+        <div class="hero hero-background">
+            <div class="container col-xxl-8 px-4 py-5 hero">
+                <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero border shadow-lg rounded hero"
+                    style="background-color: #1d3557;">
+                    <div class="col-lg-6 hero">
+                        <h1 class="display-5 fw-bold lh-1 mb-3" style="color:#a8dadc">
+                            <%=hofPrints[print]["name"]%>
+                        </h1>
+                        <p class="lead" style="color:#a8dadc">
+                            <%=hofPrints[print]["description"]%>
+                        </p>
+                        <p class="lead" style="color:#a8dadc">Printed on <%=hofPrints[print]["printer"]%> by <%=hofPrints[print]["student"]%>
+                        </p>
 
-        <%}%>
-
-
-            <%for(print in hofPrints){%>
-                <div class="b-example-divider"></div>
-                <div class="hero hero-background">
-                    <div class="container col-xxl-8 px-4 py-5 hero">
-                        <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero border shadow-lg rounded hero"
-                            style="background-color: #1d3557;">
-                            <div class="col-lg-6 hero">
-                                <h1 class="display-5 fw-bold lh-1 mb-3">
-                                    <%=hofPrints[print]["name"]%>
-                                </h1>
-                                <p class="lead">
-                                    <%=hofPrints[print]["description"]%>
-                                </p>
-                                <p class="lead">Printed on <%=hofPrints[print]["printer"]%> by <%=hofPrints[print]["student"]%>
-                                </p>
-                                <div class="col-10 col-sm-8 col-lg-6 hero">
-                                    <img src="images/<%=hofPrints[print][" photo"]%>" class="d-block mx-lg-auto img-fluid" alt="Technical Difficulties" width="700" height="500" loading="lazy">
-            
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="col-10 col-sm-8 col-lg-6 hero">
+                        <img src="images/<%=hofPrints[print]["photo"]%>" class="d-block mx-lg-auto img-fluid" alt="Technical Difficulties" width="700" height="500" loading="lazy">
 
                     </div>
                 </div>
-                </div>
-                <hr class="hr divid">
+
+            </div>
+        </div>
+        <%}%>
+        <hr class="hr divid">
+        <div class="b-example-divider"></div>
+            <%i++%>
+        <%}%>
+
 
 
                 <%- include('../partials/footer') -%>
