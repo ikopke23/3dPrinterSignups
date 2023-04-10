@@ -2,6 +2,8 @@ const express = require('express'),
   router = express.Router();
  const fs = require('fs');
 
+  const Printers = require('../models/printer_model')
+
 function loggedIn(request, response, next) {
   if (request.user) {
     next();

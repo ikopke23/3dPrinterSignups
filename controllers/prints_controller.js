@@ -3,7 +3,7 @@ const express = require('express'),
   const fs = require('fs');
   const UUID = require('uuid')
 
-  const Prints = require('../model/prints_model')
+  const Prints = require('../models/print_model')
 
 function loggedIn(request, response, next) {
   if (request.user) {
