@@ -77,17 +77,37 @@ exports.removeUser = function (userID) {
 exports.addPrint = function (userID, printID) {
     let allUsers = getUsers();
     if (allUsers[userID]) {
-        let prints = allUsers[userID].prints;
-        prints.push[printID];
+        allUsers[userID].prints.push[printID];
     }
     fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
 }
 
-exports.addSVG = function (userID, printID) {
+exports.removePrint = function (userID, printID) {
     let allUsers = getUsers();
     if (allUsers[userID]) {
         let prints = allUsers[userID].prints;
-        prints.push[printID];
+        prints.splice(prints.indexOf(printID), 1)
+        allUsers[userID].prints = prints;
+    }
+    fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
+}
+
+
+exports.addSVG = function (userID, svgID) {
+    let allUsers = getUsers();
+    if (allUsers[userID]) {
+        let prints = allUsers[userID].svg;
+        svg.push[svgID];
+    }
+    fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
+}
+
+exports.removePrint = function (userID, svgID) {
+    let allUsers = getUsers();
+    if (allUsers[userID]) {
+        let svgs = allUsers[userID].SVGs;
+        svgs.splice(svgs.indexOf(svgID), 1)
+        allUsers[userID].SVGs = svgs;
     }
     fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
 }
