@@ -1,4 +1,8 @@
-<%- include('../partials/header', {title:"Hall of Fame Submission"}) -%>
+<%if(user == null){%>
+    <%- include('../partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+    <%- include('../partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
 <h1 class="fs-1">Submit any print you feel Proud of!</h1>
 
 <form action="/hofsubmit" method="POST">

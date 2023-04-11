@@ -1,5 +1,6 @@
 //..............Include Express..................................//
 const express = require('express');
+const multer = require('multer');
 const ejs = require('ejs');
 const methodOverride = require('method-override');
 
@@ -15,6 +16,10 @@ app.use(methodOverride('_method'));//middleware for CRUD:UPDATE and DELETE
 app.use(express.static('public')); //specify location of static assests
 app.set('views', __dirname + '/views'); //specify location of templates
 app.set('view engine', 'ejs'); //specify templating library
+
+
+
+
 
 app.use(require('./controllers/auth'));
 app.use(require('./controllers/index'));

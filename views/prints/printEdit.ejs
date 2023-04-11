@@ -1,5 +1,8 @@
-<%- include('../partials/header', {title:"Edit your Print"})-%>
-
+<%if(user == null){%>
+    <%- include('../partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+    <%- include('../partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
 
                     <p class="fs-2 pPrint text-justify text-center" style="color:#1d3557">Please remember the rules for creating a print
                     </p>
@@ -22,70 +25,35 @@
                     </div>
                     <!-- Main Stuff -->
 
-
-                    <div>
-                        <form action="/print" method="POST">
-                            <div class="form-row">
-                                
-                                <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Print Name</label>
-                                    <input class="form-control" id="printName" name="printName"
-                                        placeholder="Benchy-89-IK">
-                                </div>
-                                <div class="form-group col-md-6"><%- include('../partials/header', {title:"Add a new Print"})-%>
-
-
-                                    <p class="fs-2 pPrint text-justify text-center" style="color:#1d3557">Please remember the rules for creating a print
-                                    </p>
-                                    <ul class="list-group list-group-flush" style="background-color:#a8dadc">
-                                        <li class="list-group-item list-group-item-dark text-justify text-center" style="color:#1d3557">Slice With Prusa
-                                            Slicer --- Make Sure you are slicing for the right printer. It should be the third
-                                            option on the right</li>
-                                        <li class="list-group-item list-group-item-dark text-justify text-center" style="color:#1d3557">Save your project
-                                            (3MF/STL) to Google Drive</li>
-                                        <li class="list-group-item list-group-item-dark text-justify text-center" style="color:#1d3557">Reserve the right
-                                            amount of time </li>
-                                        <li class="list-group-item list-group-item-dark font-weight-bold text-justify text-center" style="color:#1d3557">
-                                            You cannot print after school if you are not going to be there -- It is a Fire Hazard
-                                            and the print will be stopped. </li>
-                                    </ul>
-                                    <div style="text-align:center">
-                                        <a class="fs-2 text-justify text-center" href="/guide">If you don't
-                                            remember how to slice your
-                                            file visit the Guide for a refresher!</a>
-                                    </div>
-                                    <!-- Main Stuff -->
-                
-                
                                     <div>
-                                        <form action="/print" method="POST">
+                                        <form action="/print/edit" method="POST">
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="inputEmail4">Print Name</label>
                                                     <input class="form-control" id="printName" name="printName"
-                                                        placeholder="Benchy-89-IK">
+                                                        placeholder="<%=print["name"]%>">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="studentName">Student Name</label>
                                                     <input type="text" class="form-control" id="studentName"
-                                                        placeholder="Ian Kopke">
+                                                        placeholder="<%=print["studentName"]%>">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="description">Description</label>
                                                 <input type="text" class="form-control" id="description"
-                                                    placeholder="A very basic Test Print that will also go into the dry dock outside the Design Lab">
+                                                    placeholder="<%=print["description"]%>">
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <label for="date">Date</label>
                                                     <input type="text" class="form-control" id="date"
-                                                        placeholder="dd/mm/yyyy/hh/mm">
+                                                        placeholder="<%=print["date"]%>">
                                                 </div>
                 
                                                 <div class="form-group col-md-2">
                                                     <label for="time">Print Time</label>
-                                                    <input type="text" class="form-control" id="time" placeholder="89 (in min)">
+                                                    <input type="text" class="form-control" id="time" placeholder="<%=print["time"]%>">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="printer">Printer</label>
@@ -130,7 +98,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-2">
                                                     <label for="infill">Infill </label>
-                                                    <input type="text" class="form-control" id="infill" placeholder="20">
+                                                    <input type="text" class="form-control" id="infill" placeholder="<%=print["infill"]%>">
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="inlineRadioOptions"
@@ -166,83 +134,6 @@
                                         </form>
                                         <br>
                 
-                
-                <%- include('../partials/body')-%>
-                                    <label for="studentName">Student Name</label>
-                                    <input type="text" class="form-control" id="studentName"
-                                        placeholder="Ian Kopke">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <input type="text" class="form-control" id="description"
-                                    placeholder="A very basic Test Print that will also go into the dry dock outside the Design Lab">
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="date">Date</label>
-                                    <input type="text" class="form-control" id="date"
-                                        placeholder="dd/mm/yyyy/hh/mm">
-                                </div>
-
-                                <div class="form-group col-md-2">
-                                    <label for="time">Print Time</label>
-                                    <input type="text" class="form-control" id="time" placeholder="89 (in min)">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="printer">Printer</label>
-                                    <select id="printer" name="printer" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option value="MK3SA">MK3S A</option>
-                                        <option value="MK3SB">MK3S B</option>
-                                        <option value="MK3C">MKS C</option>
-                                        <option value="MK3SD">MK3S D</option>
-                                        <option value="Mini1">Mini 1</option>
-                                        <option value="Mini2">Mini 2</option>
-                                        <option value="Mini3">Mini 3</option>
-                                        <option value="Mini4">Mini 4</option>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-2">
-                                    <label for="infill">Infill </label>
-                                    <input type="text" class="form-control" id="infill" placeholder="20">
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">0.30</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">0.25</label>
-                                    <!-- Make sure the right widths are disabled depending upon which printer is selected-->
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio3" value="option3">
-                                    <label class="form-check-label" for="inlineRadio3">0.20</label>
-                                </div>
-                            </div>
-
-
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <input type="file" class="custom-file-input form-control" id="customFile">
-                                    <label class="custom-file-label" for="customFile">STL/3mf Submit</label>
-                                </div>
-                                <div class="form-group col-md-4" style="margin-left:15!important">
-                                    <input type="file" class="custom-file-input form-control" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Photo of Print</label>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                        <br>
-
+            
 
 <%- include('../partials/body')-%>

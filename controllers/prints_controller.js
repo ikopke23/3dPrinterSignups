@@ -1,9 +1,11 @@
 const express = require('express'),
   router = express.Router();
   const fs = require('fs');
-  const UUID = require('uuid')
+const multer = require('multer');
+const UUID = require('uuid')
 
-  const Prints = require('../models/print_model')
+  const Prints = require('../models/print_model');
+  const user_model = require('../models/user_model');
 
 function loggedIn(request, response, next) {
   if (request.user) {
@@ -12,6 +14,29 @@ function loggedIn(request, response, next) {
     response.redirect('/login');
   }
 }
+
+
+let privateStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    console.log(file)
+    cb(null, Date.now()+'-'+file.originalname.replace(' ', '-'));
+  }
+});
+let privateUpload = multer({ storage: privateStorage });
+
+let publicStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/images')
+  },
+  filename: function (req, file, cb) {
+    console.log(file)
+    cb(null, Date.now()+'-'+file.originalname.replace(' ', '-'));
+  }
+});
+let publicUpload = multer({ storage: publicStorage });
 
   //used to be prints/allprints
 router.get('/print', function(request, response){
@@ -35,13 +60,14 @@ router.get('/print', function(request, response){
   });
   
   //used to be prints/:printname
-  router.get('/prints/:id', loggedIn, function(request, response){
+  router.get('/prints/:id', function(request, response){
     let prints = Prints.getPrints()
     console.log("/prints/:printName")
-    let printName = request.params.printName;
-    // console.log("printName = "+printName)
+    let printName = request.params.id;
+    // console.log(request)
+    console.log("printName = "+printName)
     // console.log("prints = "+prints[printName]["description"])
-    if(prints[printName]){
+    if(Prints.isPrint(printName)){
       console.log("it's the if statement")
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
@@ -54,6 +80,7 @@ router.get('/print', function(request, response){
       response.status(404);
       response.setHeader('Content-Type', 'text/html')
       response.render("error", {
+        user: request.user,
         "errorCode":"404"
       });
     }
@@ -63,20 +90,23 @@ router.get('/print', function(request, response){
   });
 
   //used to be prints/printcreate
-  router.post('/print', function(request,response){
+  router.post('/print', publicUpload.single('photo'), function(request,response){
     let prints = Prints.getPrints();
-    let printName = request.printName;
+    let printName = request.body.printName;
     console.log(printName);
+    const file = request.file;
     
     // console.log(prints);
-    // console.log("PrintName =  "+ printName);
-    // console.log(request.body.width)
-    if(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer  && request.body.user["_json"]["email"]){
+    console.log("PrintName =  "+ printName);
+    console.log("width = "+ request.body.width)
+    console.log(request.body)
+    console.log(request.file);
+    if(request.body.printName && request.body.description  && request.body.infill && request.body.width && request.body.time && request.body.printer  && request.user["_json"]["email"]){
     
-      let newPrint = Prints.createPrint(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer  && request.body.user["_json"]["email"]);
+      let newPrint = Prints.printCreate(request.body.printName && request.body.description && request.body.infill && request.body.width && request.body.time && request.body.printer  && request.user["_json"]["email"], file.filename);
       user_model.addPrint(request.body.printName)
 
-    
+      console.log("trying to create the new print")
       console.log(Prints.getPrints())
   
       response.status(200);
@@ -92,15 +122,17 @@ router.get('/print', function(request, response){
   
 
   
-  router.get('/prints/:id/edit', loggedIn, function(request, response){
-    let prints = Print.getPrints()
+  router.get('/prints/edit/:id', loggedIn, function(request, response){
+    let prints = Prints.getPrints()
 
-    let printName = request.params.printName;
+    let printName = request.params.id;
 
     let userEmail = request.user["_json"]["email"];
+    // console.log(request);
 
-    if(prints[printName] && prints[printName]["user"] == userEmail){
+    if(Prints.isPrint(printName) && user_model.usersPrint(userEmail, printName)){
       console.log("it's the if statement")
+      console.log("print/:id/edit printName = :" + printName)
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
       response.render("prints/printEdit", {
@@ -112,6 +144,7 @@ router.get('/print', function(request, response){
       response.status(404);
       response.setHeader('Content-Type', 'text/html')
       response.render("error", {
+        user: request.user,
         "errorCode":"404"
       });
     }
@@ -121,17 +154,17 @@ router.get('/print', function(request, response){
   });
   
   router.post('/print/edit', function(request,response){
-    let prints = JSON.parse(fs.readFileSync("../data/prints.json"));
+    let prints = Print.getPrints();
     let printName = request.printName;
     console.log(printName);
     
     // console.log(prints);
     // console.log("PrintName =  "+ printName);
     // console.log(request.body.width)
-    if(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer && request.body.photo && request.body.user["_json"]["email"]){
+    if(request.body.printName && request.body.description && request.body.infill && request.body.width && request.body.time && request.body.printer && request.body.photo && request.body.user["_json"]["email"]){
     
       user_model.deletePrint(request.body.oldName);
-      let newPrint = print_model.createPrint(request.body.printName && request.body.description && request.body.link && request.body.infill && request.body.width && request.body.time && request.body.printer && request.body.photo && request.body.user["_json"]["email"]);
+      let newPrint = print_model.createPrint(request.body.printName && request.body.description && request.body.infill && request.body.width && request.body.time && request.body.printer && request.body.photo && request.body.user["_json"]["email"]);
       user_model.addPrint(request.body.printName)
 
 
@@ -144,7 +177,6 @@ router.get('/print', function(request, response){
       })
       response.redirect("/print/"+printName)
     } else {
-      alert("Please fill out all information before saving");
     }
   });
   

@@ -1,4 +1,8 @@
-<%- include('../partials/header', {title:"Prints"})-%>
+<%if(user == null){%>
+    <%- include('../partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+    <%- include('../partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
     <h1 class="fs-1">Every Print is stored Here!</h1>
     <%for(print in prints){%>
         <div class="b-example-divider"></div>

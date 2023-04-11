@@ -1,6 +1,8 @@
-<%- include('partials/userHeader', {title:"<%=svg[name]%>"})-%>
-
-
+<%if(user == null){%>
+    <%- include('../partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+    <%- include('../partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
 
 <div class="row">
     

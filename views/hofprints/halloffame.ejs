@@ -1,5 +1,8 @@
-<%- include('../partials/header', {title:"Hall of Fame"}) -%>
-
+<%if(user == null){%>
+    <%- include('../partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+    <%- include('../partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
 
 
     <h2 class="fs-2 hof">Want to submit to the Hall of Fame?</h2> 

@@ -1,5 +1,8 @@
-<%- include('../partials/header', {title:"print[name]"}) -%>
-
+<%if(user == null){%>
+  <%- include('../partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+  <%- include('../partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
 
 
 <!-- This is where I put all the specifics about each print -->
@@ -11,44 +14,47 @@
   <%}%>
 </div>
 
-<span  class="hidden">  </span>
+<span  class="hidden">  </span>               
 
 <!-- console.log(print) -->
-<table class="table table-striped table-primary table-hover">
+<table class="table  table-hover">
   <thead>
-      <td colspan="2"><%=print["name"]%></td>
+      <td colspan="2" class="text-center" style="color:#1d3557; background-color:#a8dadc;"><%=print["name"]%></td>
   </thead>
   <tbody>
     <tr>
-      <td>Description:</td>
-      <td><%=print["description"]%></td>
+      <td style="color:#a8dadc; background-color:#1d3557;">Description:</td>
+      <td style="color:#a8dadc; background-color:#1d3557;"><%=print["description"]%></td>
     </tr>
     <tr>
-      <td>Printer:</td>
-      <td><%=print["printer"]%></td>
+      <td style="color:#1d3557; background-color:#a8dadc;">Printer:</td>
+      <td style="color:#1d3557; background-color:#a8dadc;"><%=print["printer"]%></td>
     </tr>
     <tr>
-      <td>Date</td>
-      <td><%= new Date(print["date"].split("/")[0], print["date"].split("/")[1], print["date"].split("/")[2], print["date"].split("/")[3], print["date"].split("/")[4])%></td>
+      <td style="color:#a8dadc; background-color:#1d3557;">Date</td>
+      <td style="color:#a8dadc; background-color:#1d3557;"><%= print["date"]%></td>
       
 
     </tr>
     <tr>
-      <td>Estimated time at 100%</td>
-      <td><%=Math.floor(print["time"]/60)%> Hours <%=print["time"]%60%> minutes </td>
+      <td style="color:#1d3557; background-color:#a8dadc;">Estimated time at 100%</td>
+      <td style="color:#1d3557; background-color:#a8dadc;"><%=Math.floor(print["time"]/60)%> Hours <%=print["time"]%60%> minutes </td>
     </tr>
 
     <tr>
-        <<td>Infill</td>
-        <td><%=print["infill"]%>%</td>
+        <td style="color:#a8dadc; background-color:#1d3557;">Infill</td>
+        <td style="color:#a8dadc; background-color:#1d3557;"><%=print["infill"]%>%</td>
     </tr>
     <tr>
-      <td>Filament Width</td>
-      <td><%=print["width"]%></td>
+      <td style="color:#1d3557; background-color:#a8dadc;">Filament Width</td>
+      <td style="color:#1d3557; background-color:#a8dadc;"><%=print["width"]%></td>
     </tr>
     <tr>
-      <td colspan="2"><a href="<%=print["link"]%>" target="_blank">Link</a></td>
+      <td colspan="2"  style="color:#a8dadc; background-color:#1d3557;"><a href="<%=print["link"]%>" target="_blank">Link</a></td>
     </tr>
   </tbody>
 </table>
-<%- include('partials/body')-%>
+<button class="btn btn-danger"><a href="/prints/edit/<%=print["name"]%>">Edit</a></button>
+<hr>
+<%- include('../partials/footer')-%>
+<%- include('../partials/body')-%>

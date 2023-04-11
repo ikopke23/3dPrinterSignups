@@ -1,5 +1,8 @@
-<%- include('../partials/header', {title:"Add a new Print"})-%>
-
+<%if(user == null){%>
+    <%- include('../partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+    <%- include('../partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
 
                     <p class="fs-2 pPrint text-justify text-center" style="color:#1d3557">Please remember the rules for creating a print
                     </p>
@@ -33,25 +36,25 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="studentName">Student Name</label>
-                                    <input type="text" class="form-control" id="studentName"
+                                    <input type="text" class="form-control" id="studentName" name="studentName"
                                         placeholder="Ian Kopke">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <input type="text" class="form-control" id="description"
+                                <input type="text" class="form-control" id="description" name="description"
                                     placeholder="A very basic Test Print that will also go into the dry dock outside the Design Lab">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="date">Date</label>
-                                    <input type="text" class="form-control" id="date"
+                                    <input type="text" class="form-control" id="date" name="date"
                                         placeholder="dd/mm/yyyy/hh/mm">
                                 </div>
 
                                 <div class="form-group col-md-2">
                                     <label for="time">Print Time</label>
-                                    <input type="text" class="form-control" id="time" placeholder="89 (in min)">
+                                    <input type="text" class="form-control" id="time" name="time" placeholder="89 (in min)">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="printer">Printer</label>
@@ -72,35 +75,36 @@
                             <div class="form-row">
                                 <div class="form-group col-md-2">
                                     <label for="infill">Infill </label>
-                                    <input type="text" class="form-control" id="infill" placeholder="20">
+                                    <input type="text" class="form-control" id="infill" placeholder="20" name="infill">
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">0.30</label>
+                                    <input class="form-check-input" type="radio" name="width"
+                                        id="width" value="0.30">
+                                    <label class="form-check-label" for="width">0.30</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">0.25</label>
+                                    <input class="form-check-input" type="radio" name="width"
+                                        id="width2" value="0.25">
+                                    <label class="form-check-label" for="width2">0.25</label>
                                     <!-- Make sure the right widths are disabled depending upon which printer is selected-->
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio3" value="option3">
-                                    <label class="form-check-label" for="inlineRadio3">0.20</label>
+                                    <input class="form-check-input" type="radio" name="width"
+                                        id="width3" value="0.20">
+                                    <label class="form-check-label" for="width3">0.20</label>
                                 </div>
                             </div>
 
 
+
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <input type="file" class="custom-file-input form-control" id="customFile">
-                                    <label class="custom-file-label" for="customFile">STL/3mf Submit</label>
+                                    <input type="stl" class="custom-file-input form-control" id="customFile">
+                                    <label class="custom-file-label" for="stl">STL/3mf Submit</label>
                                 </div>
                                 <div class="form-group col-md-4" style="margin-left:15!important">
-                                    <input type="file" class="custom-file-input form-control" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Photo of Print</label>
+                                    <input type="file" class="custom-file-input form-control" id="photo">
+                                    <label class="custom-file-label" for="photo" name="photo" accept="image/*">Photo of Print</label>
                                 </div>
                             </div>
 

@@ -1,7 +1,11 @@
-<%- include('../partials/header', {title:"Add Printer!"})-%>
+<%if(user == null){%>
+    <%- include('../partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+    <%- include('../partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
 <h1 class="fs-1">Add Printers!</h1>
 
-<form action="/addprinter" method="POST">
+<form action="/printer" method="POST">
     <label for="printerName">Name:</label>
     <input type="text" id="name" name="printerName" value=""><br>
     <label for="status">Status:</label>

@@ -1,5 +1,8 @@
-<%- include('../partials/header', {title:"Status"})-%>
-
+<%if(user == null){%>
+    <%- include('../partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+    <%- include('../partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
 <h1 class="fs-1">Welcome to the Status page</h1>
 <h2 class="fs-2 hof">You can see all the printers and the errors that they have had.</h2>
 <a class="fs-3 hof" href="/report">If you want to report an error or a failure click on this sentence.</a>

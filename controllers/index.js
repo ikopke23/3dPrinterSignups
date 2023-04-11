@@ -74,6 +74,7 @@ router.get('/error', function(request, response) {
   response.status(errorCode);
   response.setHeader('Content-Type', 'text/html')
   response.render("error", {
+    user: request.user,
     "errorCode": errorCode,
     "details": errors[errorCode]
   });

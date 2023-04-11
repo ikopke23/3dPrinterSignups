@@ -16,6 +16,7 @@ router.get('/hofprints', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("hofprints/halloffame", {
+      user:request.user,
       hofPrints : JSON.parse(fs.readFileSync("data/hofprints.json"))
     })
   });
@@ -23,7 +24,9 @@ router.get('/hofprints', function(request, response){
   router.get('/hofprints/hofsubmit', function(request,response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("hofprints/hofSubmit")
+    response.render("hofprints/hofSubmit", {
+      user:request.user
+    })
   });
   
   router.post('/hofprints', loggedIn, function(request, response){

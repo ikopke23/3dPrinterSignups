@@ -11,25 +11,25 @@ getlocalUsers = function () {
 }
 
 exports.isUser = function (userID) {
-    let users = getUsers();
+    let users = getlocalUsers();
     if (users[userID] && users[userID]["privileges"].indexOf("user") >= 0) return true;
     else return false;
 }
 
 exports.makeAdmin = function (userID) {
-    let allUsers = getUsers();
+    let allUsers = getlocalUsers();
     if (users[userID] && users[userID]["privileges"].indexOf("admin") < 0) users[userID]["privileges"].push("admin");
     fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
 }
 
 exports.isAdmin = function (userID) {
-    let users = getUsers();
+    let users = getlocalUsers();
     if (users[userID] && users[userID]["privileges"].indexOf("admin") >= 0) return true;
     else return false;
 }
 
 exports.getUser = function (userID) {
-    let users = getUsers();
+    let users = getlocalUsers();
     let prints = users[userID]["prints"];
     let printHours = 0;
     for (let i = 0; i, users[userID]["prints"].length; i++) {
@@ -58,7 +58,7 @@ exports.createUser = function (userID, playerDisplayName) {
 }
 
 exports.updateUser = function (playerName, results) {
-    let allUsers = getUsers();
+    let allUsers = getlocalUsers();
 
     /*  if(outcome=="player") allUsers[playerName]["win"]++;
       else if(outcome=="player") allUsers[playerName]["lose"]++;
@@ -69,21 +69,23 @@ exports.updateUser = function (playerName, results) {
 }
 
 exports.removeUser = function (userID) {
-    let allUsers = getUsers();
+    let allUsers = getlocalUsers();
     if (allUsers[userID]) delete allUsers[userID];
     fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
 }
 
 exports.addPrint = function (userID, printID) {
-    let allUsers = getUsers();
+    let allUsers = getlocalUsers();
     if (allUsers[userID]) {
         allUsers[userID].prints.push[printID];
+        allUsers[userID].printHours += Prints.getPrints()[printID][time]/60
     }
+
     fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
 }
 
 exports.removePrint = function (userID, printID) {
-    let allUsers = getUsers();
+    let allUsers = getlocalUsers();
     if (allUsers[userID]) {
         let prints = allUsers[userID].prints;
         prints.splice(prints.indexOf(printID), 1)
@@ -92,9 +94,20 @@ exports.removePrint = function (userID, printID) {
     fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(allUsers));
 }
 
+exports.usersPrint = function(userName, printName){
+    users = getlocalUsers();
+    console.log(users["prints"]);
+    userPrints = users[userName].prints
+
+    for(let i = 0; i < userPrints.length; i++){
+        if(userPrints[i] == printName)
+            return true;
+    }
+    return false;
+}
 
 exports.addSVG = function (userID, svgID) {
-    let allUsers = getUsers();
+    let allUsers = getlocalUsers();
     if (allUsers[userID]) {
         let prints = allUsers[userID].svg;
         svg.push[svgID];
@@ -103,7 +116,7 @@ exports.addSVG = function (userID, svgID) {
 }
 
 exports.removeSVG = function (userID, svgID) {
-    let allUsers = getUsers();
+    let allUsers = getlocalUsers();
     if (allUsers[userID]) {
         let svgs = allUsers[userID].SVGs;
         svgs.splice(svgs.indexOf(svgID), 1)

@@ -1,4 +1,8 @@
-<%- include('partials/header', {title:"Error"}) -%>
+<%if(user == null){%>
+    <%- include('partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+    <%- include('partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
 
 <h2> <%=errorCode%> Error</h2>
 <p> The resource you requested has not been found.</p>

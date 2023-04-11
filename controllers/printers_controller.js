@@ -60,13 +60,15 @@ router.get('/printer/new', loggedIn, function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("printers/addPrinter", {
-      user: request.user
+        user: request.user,
+        user: request.user
     })
   });
 
 
 //used to be /printer/addprinter
 router.post('/printer', function(request, response){
+  console.log("New Printer")
     let printers = JSON.parse(fs.readFileSync("data/printers.json"))
     let printerName = request.body.printName;
     let stats = request.body.status;
@@ -93,6 +95,7 @@ router.post('/printer', function(request, response){
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
       response.render("printers/printerDetails", {
+        user: request.user,
         printer:printerName.split(' ').join(''),
       })
       response.redirect("printerDetails/"+printerName)
@@ -100,7 +103,7 @@ router.post('/printer', function(request, response){
   });
 //used to be printer/printerName
 router.get('/printer/:id', loggedIn, function(request, response){
-    let printers = JSON.parse(fs.readFileSync("data/printers.json"))
+    let printers = Printers.getPrinters()
     console.log("/printer/:id")
     let printerName = request.params.id;
     console.log("printerName = "+printerName)
@@ -110,12 +113,14 @@ router.get('/printer/:id', loggedIn, function(request, response){
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
       response.render("printers/printerDetails", {
+        user: request.user,
         printer: printers[printerName]
       });
     } else{
       response.status(404);
       response.setHeader('Content-Type', 'text/html')
       response.render("error", {
+        user: request.user,
         "errorCode":"404"
       });
     }

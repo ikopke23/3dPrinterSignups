@@ -1,4 +1,8 @@
-<%- include('../partials/header', {title:"All the Svgs are here"})-%>
+<%if(user == null){%>
+    <%- include('../partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+    <%- include('../partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
     <h1 class="fs-1"></h1>
     
     <%for(svg in svgs){%>

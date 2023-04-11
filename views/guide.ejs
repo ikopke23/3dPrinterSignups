@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<%- include('partials/header', {title:"Guide"}) -%>
+<%if(user == null){%>
+  <%- include('partials/header', {title:"Design Lab 2.0"})-%>
+<%}else {%>
+  <%- include('partials/userHeader', {title:"Design Lab 2.0"})-%>
+<%}%>
 <body>
   Hello World
   <a href="/advtips">Adv Tips</a>
