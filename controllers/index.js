@@ -32,26 +32,27 @@ function loggedIn(request, response, next) {
   router.get('/guide', function(request, response) {
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("guide")
+    response.render("guide", {
+      user: request.user
+    })
   });
   
   router.get('/advtips', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("advTips")
+    response.render("advTips", {
+      user: request.user
+    })
   })
   
   router.get('/schedule', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("schedule")
+    response.render("schedule", {
+      user: request.user
+    })
   });
   
-  router.get('/status', function(request, response){
-    response.status(200);
-    response.setHeader('Content-Type', 'text/html')
-    response.render("status")
-  });
 
   router.get('/login', function(request, response) {
     response.status(200);

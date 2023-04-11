@@ -9,6 +9,8 @@
 <div>
   <% if(print["photo"].length > 20){ %>
     <img class="rounded-lg-3" src="<%=print["photo"]%>">
+  <% } else if(parseInt(print["photo"].substring(0,8)) != NaN){%>
+    <img class="rounded-lg-3" src="images/<%=print["photo"].substring(print["photo"].indexOf("-")+1, print["photo"].length)%>">
   <%} else{ %>
     <img class="rounded-lg-3" src="images/<%=print["photo"]%>">
   <%}%>

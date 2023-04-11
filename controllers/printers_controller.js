@@ -14,7 +14,7 @@ function loggedIn(request, response, next) {
 
 
 //used to be printers/allPrinters
-router.get('/printer', loggedIn, function(request, response){
+router.get('/printer', function(request, response){
     let printerList = JSON.parse(fs.readFileSync('data/printers.json'))
     response.status(200)
     response.setHeader('Content-Type', 'text/html')
@@ -126,5 +126,13 @@ router.get('/printer/:id', loggedIn, function(request, response){
     }
   });
 
+
+  router.get('/printers/status', function(request, response){
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("printers/status", {
+      user: request.user
+    })
+  });
 
   module.exports = router;

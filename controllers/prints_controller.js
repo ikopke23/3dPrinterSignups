@@ -99,11 +99,11 @@ router.get('/print', function(request, response){
     // console.log(prints);
     console.log("PrintName =  "+ printName);
     console.log("width = "+ request.body.width)
-    console.log(request.body)
-    console.log(request.file);
+    console.log(request)
+    // console.log(request.file);
     if(request.body.printName && request.body.description  && request.body.infill && request.body.width && request.body.time && request.body.printer  && request.user["_json"]["email"]){
     
-      let newPrint = Prints.printCreate(request.body.printName && request.body.description && request.body.infill && request.body.width && request.body.time && request.body.printer  && request.user["_json"]["email"], file.filename);
+      let newPrint = Prints.printCreate(request.body.printName, request.body.description, request.body.infill, request.body.width, request.body.time, request.body.printer, request.user["_json"]["email"],request.body.photo, request.body.studentName, request.body.date);
       user_model.addPrint(request.body.printName)
 
       console.log("trying to create the new print")
@@ -191,5 +191,17 @@ router.get('/print', function(request, response){
     })
   });
   
+
+  router.post('/upload/photo', publicUpload.single('picture'), (req, res, next) => {
+    const file = req.file;
+    if (!file) {
+      const error = {
+      'httpStatusCode' : 400,
+      'message':'Please upload a file'
+       }
+      res.send(error);
+    }
+
+  })
 
   module.exports = router;

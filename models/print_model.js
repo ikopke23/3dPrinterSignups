@@ -15,23 +15,23 @@ exports.savePrints = function(prints){
 }
 
 
-exports.printCreate = function(printName, description, infill, width, time, printer, user, photo){
+exports.printCreate = function(printName, description, infill, width, time, printer, user, photo, studentName, date){
     let prints = localGetPrints();
-    if(printName && description && time && infill && width && time && printer && user){
+    if(printName && description && time && infill && width && time && printer && user && photo){
         let newPrint = {
-            "name":request.body.printName,
-            "description":request.body.description,
-            "time":request.body.time,
-            "infill":request.body.infill,
-            "studentName":request.body.studentName,
-            "date":request.body.date,
-            "printer":request.body.printer,
-            "photo":request.body.photo,
-            "user":request.user["_json"]["email"]
+            "name":printName,
+            "description": description,
+            "time": time,
+            "infill": infill,
+            "studentName": studentName,
+            "date": date,
+            "printer": printer,
+            "photo": photo,
+            "user":user
           };
 
           prints[printName] = newPrint;
-          fs.writeFileSync("../data/prints.json", JSON.stringify(prints))
+          fs.writeFileSync("data/prints.json", JSON.stringify(prints))
            return newPrint;
     }
 }
