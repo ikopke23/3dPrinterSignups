@@ -5,6 +5,7 @@ const multer = require('multer');
 const UUID = require('uuid')
 
   const Prints = require('../models/print_model');
+  const Printers = require('../models/printer_model');
   const user_model = require('../models/user_model');
 
 function loggedIn(request, response, next) {
@@ -29,11 +30,12 @@ let privateUpload = multer({ storage: privateStorage });
 
 let publicStorage = multer.diskStorage({
   destination: function (req, file, cb) {
+    console.log(req);
     cb(null, './public/images')
   },
   filename: function (req, file, cb) {
     console.log(file)
-    cb(null, Date.now()+'-'+file.originalname.replace(' ', '-'));
+    cb(null, file.originalname.replace(' ', '-'));
   }
 });
 let publicUpload = multer({ storage: publicStorage });
@@ -90,7 +92,7 @@ router.get('/print', function(request, response){
   });
 
   //used to be prints/printcreate
-  router.post('/print', publicUpload.single('photo'), function(request,response){
+  router.post('/print', function(request,response){
     let prints = Prints.getPrints();
     let printName = request.body.printName;
     console.log(printName);
@@ -121,7 +123,17 @@ router.get('/print', function(request, response){
   });
   
 
-  
+  router.get('/prints/delete/:id', loggedIn, function(request, response){
+    let printName = request.params.id;
+    Prints.deletePrint(printName);
+
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.redirect("/print");
+  })
+
+
+
   router.get('/prints/edit/:id', loggedIn, function(request, response){
     let prints = Prints.getPrints()
 
@@ -154,20 +166,18 @@ router.get('/print', function(request, response){
   });
   
   router.post('/print/edit', function(request,response){
-    let prints = Print.getPrints();
-    let printName = request.printName;
+    let prints = Prints.getPrints();
+    let printName = request.body.printName;
     console.log(printName);
     
     // console.log(prints);
     // console.log("PrintName =  "+ printName);
     // console.log(request.body.width)
     if(request.body.printName && request.body.description && request.body.infill && request.body.width && request.body.time && request.body.printer && request.body.photo && request.body.user["_json"]["email"]){
-    
+      console.log("editing a print");
       user_model.deletePrint(request.body.oldName);
       let newPrint = print_model.createPrint(request.body.printName && request.body.description && request.body.infill && request.body.width && request.body.time && request.body.printer && request.body.photo && request.body.user["_json"]["email"]);
       user_model.addPrint(request.body.printName)
-
-
 
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
@@ -192,14 +202,41 @@ router.get('/print', function(request, response){
   });
   
 
-  router.post('/upload/photo', publicUpload.single('picture'), (req, res, next) => {
+  router.post('/upload/photo', publicUpload.single('photoFile'), (req, res, next) => {
     const file = req.file;
+    // console.log(req);
     if (!file) {
       const error = {
       'httpStatusCode' : 400,
       'message':'Please upload a file'
        }
       res.send(error);
+    }
+    let prints = Prints.getPrints();
+    let printName = req.body.printName;
+    console.log(printName);
+    
+    // console.log(prints);
+    console.log("PrintName =  "+ printName);
+    console.log("width = "+ req.body.width)
+    console.log(req)
+    // console.log(req.file);
+    if(req.body.printName && req.body.description  && req.body.infill && req.body.width && req.body.time && req.body.printer  && req.user["_json"]["email"]){
+    
+      let newPrint = Prints.printCreate(req.body.printName, req.body.description, req.body.infill, req.body.width, req.body.time, req.body.printer, req.user["_json"]["email"],req.body.photo, req.body.studentName, req.body.date);
+      user_model.addPrint(req.body.printName)
+      Printers.addPrint(req.body.printer, req.body.printName)
+
+      console.log("trying to create the new print")
+      console.log(Prints.getPrints())
+  
+      res.status(200);
+      res.setHeader('Content-Type', 'text/html')
+      res.render("prints/printDetails", {
+        user: req.user,
+        print : newPrint
+      })
+      res.redirect("/print/"+printName)
     }
 
   })

@@ -10,7 +10,7 @@ function localGetPrints(){
     return JSON.parse(fs.readFileSync("data/prints.json"));
 }
 
-exports.savePrints = function(prints){
+function savePrints(prints){
     fs.writeFileSync("data/prints.json", JSON.stringify(prints))
 }
 

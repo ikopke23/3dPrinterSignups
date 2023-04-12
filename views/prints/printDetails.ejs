@@ -6,13 +6,13 @@
 
 
 <!-- This is where I put all the specifics about each print -->
-<div>
+<div class="d-flex column justify-content-center">
   <% if(print["photo"].length > 20){ %>
-    <img class="rounded-lg-3" src="<%=print["photo"]%>">
+    <img class="rounded-lg-3" width="75%" height="50%" src="<%=print["photo"]%>">
   <% } else if(parseInt(print["photo"].substring(0,8)) != NaN){%>
-    <img class="rounded-lg-3" src="images/<%=print["photo"].substring(print["photo"].indexOf("-")+1, print["photo"].length)%>">
+    <img class="rounded-lg-3" width="25%" height="50%" src="../images/<%=print["photo"].substring(print["photo"].indexOf("-")+1, print["photo"].length)%>">
   <%} else{ %>
-    <img class="rounded-lg-3" src="images/<%=print["photo"]%>">
+    <img class="rounded-lg-3" width="25%" height="50%" src="../images/<%=print["photo"]%>">
   <%}%>
 </div>
 
@@ -56,7 +56,10 @@
     </tr>
   </tbody>
 </table>
-<button class="btn btn-danger"><a href="/prints/edit/<%=print["name"]%>">Edit</a></button>
+<%if(user["_json"]["email"] == print["user"]){%>  
+  <button class="btn btn-danger"><a href="/prints/edit/<%=print["name"]%>">Edit</a></button>
+  <button class="btn btn-danger"><a href="/prints/delete/<%=print["name"]%>">Delete</a></button>
+<%}%>
 <hr>
 <%- include('../partials/footer')-%>
 <%- include('../partials/body')-%>

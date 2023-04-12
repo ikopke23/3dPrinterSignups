@@ -27,7 +27,7 @@
 
 
                     <div>
-                        <form action="/print" method="POST" enctype="multipart/form-data">
+                        <form action="/upload/photo" method="POST" enctype="multipart/form-data">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Print Name</label>
@@ -95,25 +95,24 @@
                                 
                                 <div>
                                     <label for="photo">Photo Name</label>
-                                    <input type="text" class="form-control" name="photo">
+                                    <input type="text" class="form-control" name="photo" placeholder="carabiner-IK.jpg">
                                 </div>
                             </div>
 
 
                             <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <input type="file" class="custom-file-input form-control" id="customFile">
+                                <!-- <div class="form-group col-md-4">
+                                    <input name="stl" type="file" class="custom-file-input form-control" id="customFile">
                                     <label class="custom-file-label" for="stl">STL/3mf Submit</label>
+                                </div> -->
+                                <div class="form-group col-md-4">
+                                    <input type="file" name="photoFile" accept="image/*" required class="custom-file-input form-control" id="customFile">
+                                    <label class="custom-file-label" for="photoFile">Photo Submission</label>
                                 </div>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
-                        <form action="/upload/photo" enctype="multipart/form-data" method="POST">
-                            <input type="file" name="picture" accept="image/*" required/>
-                            <br>
-                            <input type="submit" value="Upload Photo" />
-                          </form>
                         <br>
 
 
